@@ -1,12 +1,13 @@
 .loginForm{
-    background: url("login.jpg");
+    background: url("building.png");
     height: 100vh;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     overflow: hidden;
+    
 }
-.loginForm::before{
+/* .loginForm::before{
     content: "";
     position: absolute;
     top: 0;
@@ -19,12 +20,25 @@
     radial-gradient(22.07px at calc(100% + 15.2px) 50%,#0000 99%,#000 101%) calc(100% - 16px) 50%/100% 64px repeat-y;
   -webkit-mask: var(--mask);
           mask: var(--mask);
-}
-.content{
-    position: absolute;
-    z-index: 2;
+} */
+ .content{
+    background: radial-gradient(circle,rgb(204, 202, 202) 0%, rgb(236, 234, 234)100%);
+    --mask:
+    radial-gradient(22.07px at calc(100% - 31.2px) 50%,#000 99%,#0000 101%) 0 calc(50% - 32px)/100% 64px,
+    radial-gradient(22.07px at calc(100% + 15.2px) 50%,#0000 99%,#000 101%) calc(100% - 16px) 50%/100% 64px repeat-y;
+  -webkit-mask: var(--mask);
+          mask: var(--mask);
 }
 form{
     background: rgba(255, 255, 255, 0.459);
     box-shadow: 0px 0px 10px 5px rgba(71, 71, 71, 0.5);
-}
+    backdrop-filter: blur(1px);
+
+} 
+/* .formSection{
+    background: url(building.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: darken;
+} */

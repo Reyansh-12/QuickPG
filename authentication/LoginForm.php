@@ -10,23 +10,24 @@
 </head>
 <body>
     <div class="loginForm m-0 p-0">
-        <div class="content">
-            <div class="d-flex justify-content-center align-items-center" style="width:1291px; height: 100vh;">
-                <div class="col-6 d-flex justify-content-center align-items-center " style="width: 527px;">
+        <div class="">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="content col-6 d-flex flex-column justify-content-center align-items-center" style="height: 100vh">
+                    <img src="logo-removebg-preview.png" alt="">
                     <h2>Find Your Perfect Home in nagpur</h2>
                 </div>
-                <div class="col-6 d-flex justify-content-center" style="width: 527px;">
-                    <form action="Login.php" method="POST" class="p-5 rounded" style="width: 100%; max-width: 400px;">
-                        <h1 class="text-center">Login</h1>
+                <div class="formSection col-6 d-flex justify-content-center align-items-center" style="height: 100vh">
+                    <form class="p-5 rounded" style="width: 400px;">
+                        <h2 class="text-center mb-4 fw-bold">Login</h2>
                         <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <input type="password" class="form-control" id="password" placeholder="Password">
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                        <button type="submit" class="btn btn-primary w-100">Submit</button>
                     </form>
                 </div>
             </div>
