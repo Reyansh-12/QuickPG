@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PG Hotels – Luxury Redefined</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0b1628;--navy-mid:#112240;--navy-card:#162a4a;--navy-light:#1e3a5f;
+  --gold:#c9a84c;--gold-light:#e2c87e;--gold-dim:#a8842a;
+  --white:#f0f4ff;--muted:#8fa3c0;--muted2:#5a7a9e;
+  --input-bg:#0d1e35;--border:rgba(201,168,76,0.2);
+  --red:#e05a5a;--green:#4caf7d;
+  --r:14px;
+}
+html{font-family:'Montserrat',sans-serif;color:var(--white);background:var(--navy);scroll-behavior:smooth}
+body{overflow-x:hidden}
+button,input,select{font-family:inherit}
+
+/* ── GLOBAL BG ── */
+.page-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 50% at 80% 10%, rgba(17,34,64,0.9) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 70% at 10% 80%, rgba(11,22,40,0.85) 0%, transparent 55%),
+    linear-gradient(160deg,#0b1628 0%,#0d1e35 55%,#0b1628 100%);
+}
+.page-bg::after{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9a84c' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 48px;
+  background:rgba(11,22,40,0.85);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(201,168,76,0.1);
+}
+.nav-brand{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;font-weight:700;color:var(--white);
+  letter-spacing:0.04em;cursor:pointer;
+}
+.nav-brand span{color:var(--gold)}
+.nav-links{display:flex;gap:4px}
+.nav-btn{
+  padding:8px 16px;border-radius:8px;border:none;
+  font-size:0.65rem;font-weight:600;letter-spacing:0.1em;
+  text-transform:uppercase;cursor:pointer;
+  background:transparent;color:var(--muted);
+  transition:all 0.25s;
+}
+.nav-btn:hover,.nav-btn.active{color:var(--gold);background:rgba(201,168,76,0.08)}
+.nav-btn.active{border-bottom:2px solid var(--gold)}
+.nav-cta{
+  padding:9px 22px;border-radius:50px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+  border:none;font-size:0.65rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:#0b1628;cursor:pointer;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,168,76,0.3)}
+
+/* ── PAGES ── */
+.page{
+  display:none;position:relative;z-index:1;
+  min-height:100vh;padding-top:80px;
+}
+.page.active{display:block}
+
+/* ═══════════════════════════════════════
+   PAGE 1 – HOME / LANDING
+═══════════════════════════════════════ */
+#page-home .hero{
+  min-height:calc(100vh - 80px);
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  text-align:center;padding:60px 48px 40px;
+  position:relative;overflow:hidden;
+}
+.hero-eyebrow{
+  font-size:0.6rem;font-weight:600;letter-spacing:0.35em;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:20px;opacity:0;
+}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,7vw,6rem);font-weight:700;
+  line-height:1.05;letter-spacing:-0.01em;color:var(--white);
+  opacity:0;
+}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-sub{
+  max-width:540px;margin:24px auto 0;
+  font-size:0.82rem;color:var(--muted);line-height:1.8;
+  opacity:0;
+}
+.hero-actions{
+  display:flex;gap:16px;margin-top:40px;
+  justify-content:center;opacity:0;
+}
+.btn-primary{
+  padding:15px 36px;border-radius:50px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+  border:none;font-size:0.72rem;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:#0b1628;cursor:pointer;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,168,76,0.35)}
+.btn-outline{
+  padding:15px 36px;border-radius:50px;
+  background:transparent;
+  border:1px solid rgba(240,244,255,0.25);
+  font-size:0.72rem;font-weight:600;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--white);cursor:pointer;
+  transition:border-color 0.3s,color 0.3s;
+}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+/* Search bar hero */
+.hero-search{
+  margin-top:50px;width:100%;max-width:860px;
+  background:rgba(22,42,74,0.7);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--border);
+  border-radius:20px;padding:24px 28px;
+  display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;
+  align-items:end;opacity:0;transform:translateY(30px);
+}
+.hs-field label{
+  display:block;font-size:0.58rem;font-weight:600;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px;
+}
+.hs-field input,.hs-field select{
+  width:100%;padding:11px 14px;
+  background:var(--input-bg);border:1px solid rgba(143,163,192,0.18);
+  border-radius:10px;color:var(--white);font-size:0.8rem;
+  outline:none;transition:border-color 0.3s;
+}
+.hs-field input:focus,.hs-field select:focus{border-color:var(--gold)}
+.hs-field select option{background:var(--navy-mid)}
+.btn-search{
+  padding:12px 28px;border-radius:10px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+  border:none;font-size:0.7rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:#0b1628;cursor:pointer;white-space:nowrap;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.btn-search:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,168,76,0.3)}
+
+/* Stats */
+.hero-stats{
+  display:flex;gap:60px;margin-top:56px;
+  justify-content:center;opacity:0;
+}
+.stat-item{text-align:center}
+.stat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.4rem;font-weight:700;color:var(--gold);
+  line-height:1;
+}
+.stat-label{
+  font-size:0.62rem;font-weight:500;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--muted);margin-top:4px;
+}
+
+/* Features */
+.section{padding:80px 48px}
+.section-label{
+  font-size:0.58rem;font-weight:600;letter-spacing:0.3em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:10px;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.6rem;font-weight:700;color:var(--white);
+  line-height:1.15;
+}
+.features-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  margin-top:48px;
+}
+.feat-card{
+  background:rgba(22,42,74,0.5);
+  border:1px solid var(--border);border-radius:var(--r);
+  padding:32px 28px;
+  transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s;
+}
+.feat-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(201,168,76,0.5);
+  box-shadow:0 20px 50px rgba(0,0,0,0.4);
+}
+.feat-icon{
+  width:48px;height:48px;border-radius:12px;
+  background:rgba(201,168,76,0.12);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;margin-bottom:18px;
+}
+.feat-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-weight:600;color:var(--white);
+  margin-bottom:10px;
+}
+.feat-text{font-size:0.75rem;color:var(--muted);line-height:1.7}
+
+/* Featured hotels */
+.hotels-row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  margin-top:40px;
+}
+.hotel-thumb{
+  border-radius:var(--r);overflow:hidden;
+  background:var(--navy-card);
+  border:1px solid var(--border);
+  cursor:pointer;
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.hotel-thumb:hover{transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,0.5)}
+.hotel-img{
+  height:180px;position:relative;overflow:hidden;
+}
+.hotel-img-bg{
+  width:100%;height:100%;
+  background-size:cover;background-position:center;
+  transition:transform 0.4s;
+}
+.hotel-thumb:hover .hotel-img-bg{transform:scale(1.06)}
+.hotel-badge{
+  position:absolute;top:12px;right:12px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+  color:#0b1628;font-size:0.58rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:4px 10px;border-radius:20px;
+}
+.hotel-info{padding:20px}
+.hotel-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;font-weight:600;color:var(--white);
+}
+.hotel-loc{font-size:0.68rem;color:var(--muted);margin-top:3px}
+.hotel-row2{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:14px;
+}
+.hotel-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-weight:700;color:var(--gold);
+}
+.hotel-price span{font-family:'Montserrat',sans-serif;font-size:0.62rem;color:var(--muted);font-weight:400}
+.hotel-stars{color:var(--gold);font-size:0.75rem;letter-spacing:1px}
+
+/* ═══════════════════════════════════════
+   PAGE 2 – SEARCH & RESULTS
+═══════════════════════════════════════ */
+#page-search .search-layout{
+  display:grid;grid-template-columns:280px 1fr;gap:28px;
+  padding:32px 48px;
+}
+/* Filters */
+.filter-panel{
+  background:rgba(22,42,74,0.5);
+  border:1px solid var(--border);border-radius:var(--r);
+  padding:28px 24px;height:fit-content;
+  position:sticky;top:100px;
+}
+.filter-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;font-weight:600;color:var(--white);
+  margin-bottom:24px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.filter-clear{
+  font-size:0.62rem;color:var(--gold);cursor:pointer;
+  background:none;border:none;font-weight:500;
+}
+.filter-section{margin-bottom:24px}
+.filter-label{
+  font-size:0.6rem;font-weight:600;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:12px;
+}
+.price-range{
+  display:flex;flex-direction:column;gap:8px;
+}
+.range-input{
+  width:100%;-webkit-appearance:none;height:3px;
+  border-radius:2px;background:linear-gradient(to right,var(--gold) 60%,rgba(143,163,192,0.2) 60%);
+  outline:none;cursor:pointer;
+}
+.range-input::-webkit-slider-thumb{
+  -webkit-appearance:none;width:16px;height:16px;
+  border-radius:50%;background:var(--gold);cursor:pointer;
+  border:2px solid var(--navy);
+  box-shadow:0 0 6px rgba(201,168,76,0.5);
+}
+.range-labels{display:flex;justify-content:space-between;font-size:0.68rem;color:var(--muted)}
+.check-list{display:flex;flex-direction:column;gap:10px}
+.check-item{display:flex;align-items:center;gap:10px;cursor:pointer}
+.check-item input[type=checkbox]{
+  width:15px;height:15px;border-radius:4px;
+  border:1px solid rgba(143,163,192,0.3);
+  background:transparent;appearance:none;cursor:pointer;
+  transition:background 0.2s;flex-shrink:0;
+}
+.check-item input:checked{background:var(--gold);border-color:var(--gold)}
+.check-item label{font-size:0.74rem;color:var(--muted);cursor:pointer}
+.star-filter{display:flex;gap:8px;flex-wrap:wrap}
+.star-tag{
+  padding:5px 12px;border-radius:20px;
+  border:1px solid rgba(143,163,192,0.2);
+  font-size:0.65rem;color:var(--muted);cursor:pointer;
+  transition:all 0.2s;
+}
+.star-tag:hover,.star-tag.active{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,0.08)}
+
+/* Results */
+.results-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:20px;
+}
+.results-count{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;font-weight:600;color:var(--white);
+}
+.results-count span{color:var(--gold)}
+.sort-select{
+  padding:9px 14px;border-radius:10px;
+  background:var(--input-bg);border:1px solid rgba(143,163,192,0.18);
+  color:var(--white);font-size:0.72rem;outline:none;cursor:pointer;
+}
+.result-card{
+  background:rgba(22,42,74,0.5);
+  border:1px solid var(--border);border-radius:var(--r);
+  display:grid;grid-template-columns:260px 1fr auto;gap:0;
+  margin-bottom:18px;overflow:hidden;
+  transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;
+  cursor:pointer;
+}
+.result-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 48px rgba(0,0,0,0.45);
+  border-color:rgba(201,168,76,0.4);
+}
+.result-img{
+  height:180px;background-size:cover;background-position:center;
+  position:relative;
+}
+.result-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,transparent 60%,rgba(22,42,74,0.5));
+}
+.result-info{padding:22px 24px;display:flex;flex-direction:column;justify-content:space-between}
+.result-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;font-weight:700;color:var(--white);
+}
+.result-loc{font-size:0.7rem;color:var(--muted);margin-top:4px;display:flex;align-items:center;gap:4px}
+.result-tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.tag{
+  padding:4px 10px;border-radius:20px;
+  background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);
+  font-size:0.6rem;color:var(--gold);font-weight:500;letter-spacing:0.05em;
+}
+.result-amenities{display:flex;gap:14px;margin-top:12px}
+.amenity{font-size:0.68rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.result-pricing{
+  padding:22px 24px;display:flex;flex-direction:column;
+  align-items:flex-end;justify-content:space-between;
+  min-width:160px;border-left:1px solid rgba(201,168,76,0.1);
+}
+.result-rating{
+  display:flex;align-items:center;gap:6px;
+}
+.rating-score{
+  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+  color:#0b1628;font-size:0.78rem;font-weight:700;
+  padding:4px 10px;border-radius:8px;
+}
+.rating-label{font-size:0.65rem;color:var(--muted)}
+.result-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;font-weight:700;color:var(--gold);text-align:right;
+}
+.result-price span{
+  display:block;font-family:'Montserrat',sans-serif;
+  font-size:0.6rem;color:var(--muted);font-weight:400;
+}
+.btn-book-sm{
+  padding:11px 22px;border-radius:10px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+  border:none;font-size:0.65rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:#0b1628;cursor:pointer;white-space:nowrap;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.btn-book-sm:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(201,168,76,0.3)}
+
+/* ═══════════════════════════════════════
+   PAGE 3 – HOTEL DETAIL
+═══════════════════════════════════════ */
+#page-detail .detail-hero{
+  height:420px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#0d2340,#1a3a5c);
+}
+.detail-hero-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(11,22,40,0.3),rgba(22,42,74,0.2)),
+    repeating-linear-gradient(45deg,rgba(201,168,76,0.03) 0,rgba(201,168,76,0.03) 1px,transparent 0,transparent 50%);
+  background-size:auto,20px 20px;
+}
+.detail-img-grid{
+  position:absolute;inset:0;display:grid;
+  grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:3px;
+}
+.detail-img-cell{background-size:cover;background-position:center;opacity:0.7}
+.detail-img-cell:first-child{grid-row:1/-1}
+.detail-hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(11,22,40,0.9) 0%,transparent 50%);
+}
+.detail-hero-content{
+  position:absolute;bottom:32px;left:48px;right:48px;
+  display:flex;align-items:flex-end;justify-content:space-between;
+}
+.detail-hotel-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.8rem;font-weight:700;color:var(--white);
+}
+.detail-loc{font-size:0.75rem;color:var(--muted);margin-top:6px;display:flex;align-items:center;gap:6px}
+.detail-stars{color:var(--gold);font-size:0.9rem;margin-top:4px}
+.detail-quick{display:flex;align-items:center;gap:16px}
+.detail-score{
+  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+  color:#0b1628;font-size:1.4rem;font-weight:700;
+  width:60px;height:60px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+}
+
+.detail-body{display:grid;grid-template-columns:1fr 340px;gap:28px;padding:32px 48px}
+.detail-main{}
+.section-head{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;font-weight:600;color:var(--white);
+  margin-bottom:16px;padding-bottom:12px;
+  border-bottom:1px solid rgba(201,168,76,0.15);
+}
+.detail-desc{font-size:0.78rem;color:var(--muted);line-height:1.85;margin-bottom:28px}
+.amenities-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  margin-bottom:28px;
+}
+.amenity-card{
+  background:rgba(22,42,74,0.4);border:1px solid var(--border);
+  border-radius:10px;padding:14px 16px;
+  display:flex;align-items:center;gap:10px;
+  font-size:0.72rem;color:var(--muted);
+}
+.amenity-card span{font-size:1.1rem}
+
+/* Room cards */
+.room-card{
+  background:rgba(22,42,74,0.4);border:1px solid var(--border);
+  border-radius:var(--r);padding:22px;
+  display:grid;grid-template-columns:140px 1fr auto;gap:20px;
+  align-items:center;margin-bottom:14px;
+  transition:border-color 0.3s,box-shadow 0.3s;
+}
+.room-card:hover{border-color:rgba(201,168,76,0.4);box-shadow:0 8px 28px rgba(0,0,0,0.3)}
+.room-img{
+  height:90px;border-radius:10px;
+  background-size:cover;background-position:center;
+}
+.room-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;font-weight:600;color:var(--white);
+}
+.room-features{display:flex;gap:12px;margin-top:8px;flex-wrap:wrap}
+.room-feat{font-size:0.65rem;color:var(--muted);display:flex;align-items:center;gap:4px}
+.room-price-col{text-align:right}
+.room-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;font-weight:700;color:var(--gold);
+}
+.room-per-night{font-size:0.6rem;color:var(--muted)}
+
+/* Booking sidebar */
+.booking-sidebar{
+  background:rgba(22,42,74,0.6);
+  border:1px solid var(--border);border-radius:var(--r);
+  padding:28px;height:fit-content;
+  position:sticky;top:100px;
+}
+.sidebar-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.4rem;font-weight:700;color:var(--gold);
+}
+.sidebar-per{font-size:0.65rem;color:var(--muted);margin-bottom:20px}
+.sb-field{margin-bottom:14px}
+.sb-label{
+  font-size:0.58rem;font-weight:600;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:6px;display:block;
+}
+.sb-input{
+  width:100%;padding:11px 14px;
+  background:var(--input-bg);border:1px solid rgba(143,163,192,0.18);
+  border-radius:10px;color:var(--white);font-size:0.8rem;
+  outline:none;transition:border-color 0.3s;
+}
+.sb-input:focus{border-color:var(--gold)}
+.sb-dates{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.price-breakdown{
+  background:rgba(11,22,40,0.5);border-radius:10px;
+  padding:16px;margin:16px 0;
+}
+.pb-row{
+  display:flex;justify-content:space-between;
+  font-size:0.72rem;color:var(--muted);margin-bottom:8px;
+}
+.pb-row.total{
+  color:var(--white);font-weight:600;font-size:0.8rem;
+  border-top:1px solid rgba(201,168,76,0.15);padding-top:10px;margin-top:4px;
+}
+.pb-row.total span:last-child{color:var(--gold)}
+
+/* Reviews */
+.reviews-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.review-card{
+  background:rgba(13,30,53,0.6);border:1px solid rgba(143,163,192,0.12);
+  border-radius:12px;padding:18px;
+}
+.review-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.reviewer{font-size:0.78rem;font-weight:600;color:var(--white)}
+.review-stars{color:var(--gold);font-size:0.65rem}
+.review-text{font-size:0.72rem;color:var(--muted);line-height:1.65}
+.review-date{font-size:0.6rem;color:var(--muted2);margin-top:8px}
+
+/* ═══════════════════════════════════════
+   PAGE 4 – BOOKING & CHECKOUT
+═══════════════════════════════════════ */
+#page-booking .checkout-layout{
+  display:grid;grid-template-columns:1fr 380px;gap:28px;
+  padding:32px 48px;
+}
+.checkout-main{}
+.step-progress{
+  display:flex;align-items:center;gap:0;
+  margin-bottom:36px;
+}
+.step{
+  display:flex;flex-direction:column;align-items:center;flex:1;
+  position:relative;
+}
+.step:not(:last-child)::after{
+  content:'';position:absolute;top:18px;left:50%;width:100%;height:2px;
+  background:rgba(143,163,192,0.15);z-index:0;
+}
+.step.done::after,.step.active::after{background:linear-gradient(to right,var(--gold),rgba(201,168,76,0.3))}
+.step-dot{
+  width:36px;height:36px;border-radius:50%;
+  border:2px solid rgba(143,163,192,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.7rem;font-weight:700;color:var(--muted);
+  background:var(--navy);z-index:1;
+  transition:all 0.3s;
+}
+.step.active .step-dot{
+  border-color:var(--gold);color:var(--gold);
+  box-shadow:0 0 0 4px rgba(201,168,76,0.15);
+}
+.step.done .step-dot{
+  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+  border-color:var(--gold);color:#0b1628;
+}
+.step-name{font-size:0.6rem;font-weight:600;color:var(--muted);margin-top:8px;letter-spacing:0.05em}
+.step.active .step-name{color:var(--gold)}
+
+.checkout-card{
+  background:rgba(22,42,74,0.5);border:1px solid var(--border);
+  border-radius:var(--r);padding:32px;margin-bottom:20px;
+}
+.checkout-section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;font-weight:600;color:var(--white);
+  margin-bottom:22px;display:flex;align-items:center;gap:10px;
+}
+.co-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.co-field{margin-bottom:0}
+.co-label{
+  font-size:0.58rem;font-weight:600;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:6px;display:block;
+}
+.co-input{
+  width:100%;padding:12px 14px;
+  background:var(--input-bg);border:1px solid rgba(143,163,192,0.18);
+  border-radius:10px;color:var(--white);font-size:0.8rem;outline:none;
+  transition:border-color 0.3s,box-shadow 0.3s;
+}
+.co-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.1)}
+.co-full{grid-column:1/-1}
+.payment-methods{display:flex;gap:12px;margin-bottom:22px}
+.pay-opt{
+  flex:1;padding:14px;border-radius:12px;
+  border:1px solid rgba(143,163,192,0.18);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  font-size:0.72rem;font-weight:500;color:var(--muted);
+  cursor:pointer;transition:all 0.25s;
+}
+.pay-opt:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,0.05)}
+.pay-opt.selected{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,0.08)}
+.pay-icon{font-size:1.2rem}
+.card-row{display:grid;grid-template-columns:1fr 100px 100px;gap:14px}
+
+/* Order summary sidebar */
+.order-summary{
+  background:rgba(22,42,74,0.6);border:1px solid var(--border);
+  border-radius:var(--r);padding:28px;position:sticky;top:100px;
+}
+.os-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-weight:600;color:var(--white);margin-bottom:20px;
+}
+.os-hotel{
+  display:flex;gap:14px;align-items:center;
+  padding-bottom:18px;border-bottom:1px solid rgba(201,168,76,0.1);margin-bottom:18px;
+}
+.os-hotel-img{
+  width:72px;height:72px;border-radius:10px;
+  background-size:cover;background-position:center;flex-shrink:0;
+}
+.os-hotel-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;font-weight:600;color:var(--white);
+}
+.os-hotel-room{font-size:0.68rem;color:var(--muted);margin-top:3px}
+.os-dates{
+  background:rgba(11,22,40,0.5);border-radius:10px;
+  padding:14px;margin-bottom:16px;
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+}
+.os-date-item{text-align:center}
+.os-date-label{font-size:0.58rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold)}
+.os-date-val{font-size:0.82rem;color:var(--white);margin-top:4px;font-weight:500}
+.os-line{
+  display:flex;justify-content:space-between;
+  font-size:0.73rem;color:var(--muted);margin-bottom:10px;
+}
+.os-total-line{
+  display:flex;justify-content:space-between;
+  padding-top:12px;margin-top:4px;
+  border-top:1px solid rgba(201,168,76,0.15);
+  font-size:0.85rem;font-weight:700;color:var(--white);
+}
+.os-total-line span:last-child{color:var(--gold)}
+.btn-confirm{
+  width:100%;margin-top:22px;padding:15px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+  border:none;border-radius:12px;
+  font-size:0.75rem;font-weight:700;letter-spacing:0.12em;
+  text-transform:uppercase;color:#0b1628;cursor:pointer;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.btn-confirm:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(201,168,76,0.35)}
+.secure-note{
+  display:flex;align-items:center;gap:6px;justify-content:center;
+  margin-top:12px;font-size:0.62rem;color:var(--muted);
+}
+/* Guest add-ons */
+.addon-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+.addon-card{
+  padding:14px;border-radius:12px;
+  border:1px solid rgba(143,163,192,0.15);
+  cursor:pointer;transition:all 0.25s;display:flex;gap:10px;align-items:flex-start;
+}
+.addon-card:hover{border-color:var(--gold);background:rgba(201,168,76,0.05)}
+.addon-card.selected{border-color:var(--gold);background:rgba(201,168,76,0.08)}
+.addon-icon{font-size:1.3rem;margin-top:1px}
+.addon-name{font-size:0.72rem;font-weight:600;color:var(--white)}
+.addon-price{font-size:0.65rem;color:var(--gold)}
+
+/* ═══════════════════════════════════════
+   PAGE 5 – USER DASHBOARD
+═══════════════════════════════════════ */
+#page-dashboard .dash-layout{
+  display:grid;grid-template-columns:260px 1fr;gap:0;
+  min-height:calc(100vh - 80px);
+}
+.dash-sidebar{
+  background:rgba(13,26,48,0.7);
+  border-right:1px solid rgba(201,168,76,0.1);
+  padding:32px 0;
+  position:sticky;top:80px;height:calc(100vh - 80px);
+  overflow-y:auto;
+}
+.user-profile-card{
+  padding:0 24px 28px;
+  border-bottom:1px solid rgba(201,168,76,0.1);
+  margin-bottom:24px;text-align:center;
+}
+.avatar{
+  width:72px;height:72px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;font-weight:700;color:#0b1628;
+  margin:0 auto 12px;
+}
+.user-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;font-weight:600;color:var(--white);
+}
+.user-tier{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:6px;padding:3px 12px;border-radius:20px;
+  background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.25);
+  font-size:0.6rem;font-weight:600;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--gold);
+}
+.user-points{font-size:0.7rem;color:var(--muted);margin-top:8px}
+.user-points strong{color:var(--white)}
+.dash-menu{padding:0 16px}
+.dash-menu-item{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 16px;border-radius:10px;
+  cursor:pointer;font-size:0.75rem;color:var(--muted);
+  transition:all 0.2s;margin-bottom:4px;
+  border:1px solid transparent;
+}
+.dash-menu-item:hover{color:var(--white);background:rgba(240,244,255,0.04)}
+.dash-menu-item.active{
+  color:var(--gold);background:rgba(201,168,76,0.08);
+  border-color:rgba(201,168,76,0.15);
+}
+.dash-menu-icon{font-size:1rem;width:22px;text-align:center}
+
+.dash-main{padding:32px 40px;overflow-y:auto}
+.dash-greeting{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;font-weight:700;color:var(--white);
+  margin-bottom:4px;
+}
+.dash-date{font-size:0.72rem;color:var(--muted);margin-bottom:32px}
+
+/* KPI cards */
+.kpi-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+  margin-bottom:32px;
+}
+.kpi-card{
+  background:rgba(22,42,74,0.5);border:1px solid var(--border);
+  border-radius:var(--r);padding:22px 20px;
+  transition:transform 0.3s,border-color 0.3s;
+}
+.kpi-card:hover{transform:translateY(-2px);border-color:rgba(201,168,76,0.4)}
+.kpi-label{font-size:0.6rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)}
+.kpi-val{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;font-weight:700;color:var(--gold);
+  margin:8px 0 4px;
+}
+.kpi-change{font-size:0.65rem;color:var(--green)}
+
+/* Upcoming bookings */
+.upcoming-list{display:flex;flex-direction:column;gap:16px;margin-bottom:32px}
+.upcoming-card{
+  background:rgba(22,42,74,0.4);border:1px solid var(--border);
+  border-radius:var(--r);padding:20px 24px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;
+  transition:border-color 0.3s;
+}
+.upcoming-card:hover{border-color:rgba(201,168,76,0.35)}
+.uc-date-box{
+  width:56px;height:56px;border-radius:12px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:#0b1628;
+}
+.uc-day{font-size:1.3rem;font-weight:700;line-height:1}
+.uc-month{font-size:0.55rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
+.uc-hotel{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-weight:600;color:var(--white);
+}
+.uc-details{font-size:0.68rem;color:var(--muted);margin-top:3px}
+.uc-status{
+  display:flex;flex-direction:column;align-items:flex-end;gap:8px;
+}
+.status-badge{
+  padding:4px 12px;border-radius:20px;font-size:0.6rem;font-weight:600;
+  letter-spacing:0.05em;text-transform:uppercase;
+}
+.status-badge.confirmed{background:rgba(76,175,125,0.15);color:var(--green);border:1px solid rgba(76,175,125,0.25)}
+.status-badge.pending{background:rgba(201,168,76,0.1);color:var(--gold);border:1px solid rgba(201,168,76,0.25)}
+.uc-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-weight:700;color:var(--gold);
+}
+
+/* Recent activity */
+.activity-list{display:flex;flex-direction:column;gap:14px}
+.activity-item{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 18px;
+  background:rgba(13,30,53,0.5);border-radius:10px;
+  border:1px solid rgba(143,163,192,0.08);
+}
+.act-icon{
+  width:38px;height:38px;border-radius:10px;
+  background:rgba(201,168,76,0.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;flex-shrink:0;
+}
+.act-text{font-size:0.73rem;color:var(--white)}
+.act-sub{font-size:0.65rem;color:var(--muted);margin-top:2px}
+.act-time{font-size:0.62rem;color:var(--muted2);margin-left:auto}
+
+/* dash subgrid */
+.dash-2col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px}
+.dash-block-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;font-weight:600;color:var(--white);
+  margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;
+}
+.view-all{font-size:0.62rem;font-weight:500;color:var(--gold);cursor:pointer;background:none;border:none}
+
+/* saved hotels mini */
+.saved-mini{
+  display:flex;align-items:center;gap:12px;
+  padding:12px;border-radius:10px;
+  border:1px solid rgba(143,163,192,0.1);
+  margin-bottom:10px;cursor:pointer;
+  transition:border-color 0.3s;
+}
+.saved-mini:hover{border-color:rgba(201,168,76,0.3)}
+.saved-img{
+  width:48px;height:48px;border-radius:8px;
+  background-size:cover;background-position:center;flex-shrink:0;
+}
+.saved-name{font-size:0.78rem;font-weight:600;color:var(--white)}
+.saved-loc{font-size:0.63rem;color:var(--muted)}
+.saved-price{font-size:0.78rem;font-weight:700;color:var(--gold);margin-left:auto;white-space:nowrap}
+
+/* Loyalty progress */
+.loyalty-bar-wrap{
+  background:rgba(11,22,40,0.5);border-radius:10px;padding:16px;
+  margin-bottom:16px;
+}
+.loyalty-tiers{display:flex;justify-content:space-between;margin-bottom:10px}
+.loyalty-tier-label{font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase}
+.loyalty-tier-label.active{color:var(--gold)}
+.loyalty-tier-label.inactive{color:var(--muted2)}
+.loy-track{
+  height:6px;border-radius:3px;
+  background:rgba(143,163,192,0.15);overflow:hidden;
+}
+.loy-fill{
+  height:100%;border-radius:3px;
+  background:linear-gradient(to right,var(--gold-dim),var(--gold));
+  width:72%;transition:width 1s ease;
+}
+.loy-caption{font-size:0.65rem;color:var(--muted);margin-top:8px}
+
+/* ── SHARED UTILITIES ── */
+.gold-rule{width:48px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:18px auto}
+.section-header{margin-bottom:40px}
+.fade-in{opacity:0;transform:translateY(20px)}
+
+</style>
+</head>
+<body>
+<div class="page-bg"></div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-brand" onclick="navigateTo('home')">PG <span>Hotels</span></div>
+  <div class="nav-links">
+    <button class="nav-btn active" id="nav-home" onclick="navigateTo('home')">Home</button>
+    <button class="nav-btn" id="nav-search" onclick="navigateTo('search')">Search</button>
+    <button class="nav-btn" id="nav-detail" onclick="navigateTo('detail')">Hotel Detail</button>
+    <button class="nav-btn" id="nav-booking" onclick="navigateTo('booking')">Booking</button>
+    <button class="nav-btn" id="nav-dashboard" onclick="navigateTo('dashboard')">Dashboard</button>
+  </div>
+  <button class="nav-cta" onclick="navigateTo('dashboard')">My Account</button>
+</nav>
+
+<!-- ═══ PAGE 1: HOME ═══ -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-eyebrow">✦ Award-Winning Luxury Since 2004 ✦</div>
+    <h1 class="hero-title">Find Your Perfect Stay<br>in <em>Nagpur & Beyond</em></h1>
+    <p class="hero-sub">World-class hospitality. Unforgettable experiences. From boutique escapes to grand palaces — curated just for you.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="navigateTo('search')">Explore Hotels</button>
+      <button class="btn-outline">View Offers</button>
+    </div>
+    <div class="hero-search">
+      <div class="hs-field">
+        <label>Destination</label>
+        <input type="text" placeholder="Nagpur, Maharashtra">
+      </div>
+      <div class="hs-field">
+        <label>Check-In</label>
+        <input type="date">
+      </div>
+      <div class="hs-field">
+        <label>Check-Out</label>
+        <input type="date">
+      </div>
+      <button class="btn-search" onclick="navigateTo('search')">Search →</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">48+</div><div class="stat-label">Properties</div></div>
+      <div class="stat-item"><div class="stat-num">12K+</div><div class="stat-label">Happy Guests</div></div>
+      <div class="stat-item"><div class="stat-num">4.9★</div><div class="stat-label">Avg Rating</div></div>
+      <div class="stat-item"><div class="stat-num">18</div><div class="stat-label">Cities</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <div class="section-label">✦ Why Choose Us</div>
+      <h2 class="section-title">The PG Hotels Experience</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card"><div class="feat-icon">🏆</div><div class="feat-title">Award-Winning Service</div><p class="feat-text">Recognised by Condé Nast Traveller as India's most personalised luxury hotel brand for five consecutive years.</p></div>
+      <div class="feat-card"><div class="feat-icon">🔑</div><div class="feat-title">Exclusive Membership</div><p class="feat-text">Join PG Gold and unlock priority check-in, complimentary upgrades, and curated local experiences.</p></div>
+      <div class="feat-card"><div class="feat-icon">🍽️</div><div class="feat-title">Culinary Excellence</div><p class="feat-text">From rooftop fine dining to in-room chef-crafted meals — every bite is an experience worth savouring.</p></div>
+      <div class="feat-card"><div class="feat-icon">🌿</div><div class="feat-title">Eco-Luxury Living</div><p class="feat-text">Sustainably sourced, LEED-certified properties that let you indulge without compromise.</p></div>
+      <div class="feat-card"><div class="feat-icon">💎</div><div class="feat-title">Bespoke Experiences</div><p class="feat-text">Heritage tours, wellness retreats, sunset cruises — every itinerary tailored exclusively to you.</p></div>
+      <div class="feat-card"><div class="feat-icon">🛡️</div><div class="feat-title">Safe & Secure</div><p class="feat-text">Industry-leading hygiene protocols, 24/7 concierge, and fully encrypted payment systems.</p></div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="section-header">
+      <div class="section-label">✦ Featured Properties</div>
+      <h2 class="section-title">Handpicked for You</h2>
+    </div>
+    <div class="hotels-row">
+      <div class="hotel-thumb" onclick="navigateTo('detail')">
+        <div class="hotel-img">
+          <div class="hotel-img-bg" style="background:linear-gradient(135deg,#1a3a5c,#0d2340);background-image:repeating-linear-gradient(45deg,rgba(201,168,76,0.05) 0,rgba(201,168,76,0.05) 1px,transparent 0,transparent 50%);background-size:auto,15px 15px"></div>
+          <div class="hotel-badge">Bestseller</div>
+        </div>
+        <div class="hotel-info">
+          <div class="hotel-name">The Grand Residency</div>
+          <div class="hotel-loc">📍 Civil Lines, Nagpur</div>
+          <div class="hotel-row2">
+            <div class="hotel-price">₹8,500 <span>/ night</span></div>
+            <div class="hotel-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="hotel-thumb" onclick="navigateTo('detail')">
+        <div class="hotel-img">
+          <div class="hotel-img-bg" style="background:linear-gradient(135deg,#1f2d40,#152230);background-image:repeating-linear-gradient(135deg,rgba(201,168,76,0.04) 0,rgba(201,168,76,0.04) 1px,transparent 0,transparent 60%);background-size:auto,18px 18px"></div>
+          <div class="hotel-badge">New</div>
+        </div>
+        <div class="hotel-info">
+          <div class="hotel-name">Heritage Palace Suites</div>
+          <div class="hotel-loc">📍 Dharampeth, Nagpur</div>
+          <div class="hotel-row2">
+            <div class="hotel-price">₹12,000 <span>/ night</span></div>
+            <div class="hotel-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="hotel-thumb" onclick="navigateTo('detail')">
+        <div class="hotel-img">
+          <div class="hotel-img-bg" style="background:linear-gradient(135deg,#0f2535,#1a3550);background-image:repeating-linear-gradient(-45deg,rgba(201,168,76,0.04) 0,rgba(201,168,76,0.04) 1px,transparent 0,transparent 40%);background-size:auto,12px 12px"></div>
+          <div class="hotel-badge">Top Rated</div>
+        </div>
+        <div class="hotel-info">
+          <div class="hotel-name">Skyline Executive</div>
+          <div class="hotel-loc">📍 Wardha Road, Nagpur</div>
+          <div class="hotel-row2">
+            <div class="hotel-price">₹6,200 <span>/ night</span></div>
+            <div class="hotel-stars">★★★★☆</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ PAGE 2: SEARCH ═══ -->
+<div class="page" id="page-search">
+  <div class="search-layout">
+    <!-- Filters -->
+    <div class="filter-panel">
+      <div class="filter-title">Filters <button class="filter-clear">Clear all</button></div>
+      <div class="filter-section">
+        <div class="filter-label">Price Per Night</div>
+        <div class="price-range">
+          <input type="range" class="range-input" min="1000" max="30000" value="15000">
+          <div class="range-labels"><span>₹1,000</span><span>₹15,000</span></div>
+        </div>
+      </div>
+      <div class="filter-section">
+        <div class="filter-label">Star Rating</div>
+        <div class="star-filter">
+          <div class="star-tag">⭐ 1+</div>
+          <div class="star-tag">⭐⭐ 2+</div>
+          <div class="star-tag active">⭐⭐⭐ 3+</div>
+          <div class="star-tag">★★★★ 4+</div>
+          <div class="star-tag">★★★★★ 5</div>
+        </div>
+      </div>
+      <div class="filter-section">
+        <div class="filter-label">Amenities</div>
+        <div class="check-list">
+          <label class="check-item"><input type="checkbox" checked><label>Free WiFi</label></label>
+          <label class="check-item"><input type="checkbox" checked><label>Swimming Pool</label></label>
+          <label class="check-item"><input type="checkbox"><label>Spa & Wellness</label></label>
+          <label class="check-item"><input type="checkbox"><label>Restaurant</label></label>
+          <label class="check-item"><input type="checkbox"><label>Gym & Fitness</label></label>
+          <label class="check-item"><input type="checkbox"><label>Airport Shuttle</label></label>
+          <label class="check-item"><input type="checkbox"><label>Rooftop Bar</label></label>
+          <label class="check-item"><input type="checkbox"><label>Pet Friendly</label></label>
+        </div>
+      </div>
+      <div class="filter-section">
+        <div class="filter-label">Property Type</div>
+        <div class="check-list">
+          <label class="check-item"><input type="checkbox" checked><label>Luxury Hotel</label></label>
+          <label class="check-item"><input type="checkbox"><label>Boutique</label></label>
+          <label class="check-item"><input type="checkbox"><label>Resort</label></label>
+          <label class="check-item"><input type="checkbox"><label>Heritage</label></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div>
+      <div class="results-header">
+        <div class="results-count"><span>24 hotels</span> in Nagpur</div>
+        <select class="sort-select"><option>Sort: Recommended</option><option>Price: Low to High</option><option>Price: High to Low</option><option>Rating</option></select>
+      </div>
+
+      <!-- Result Cards -->
+      <div class="result-card" onclick="navigateTo('detail')">
+        <div class="result-img" style="background:linear-gradient(135deg,#1a3a5c,#0d2340);background-image:repeating-linear-gradient(45deg,rgba(201,168,76,0.06) 0,rgba(201,168,76,0.06) 1px,transparent 0,transparent 50%);background-size:auto,15px 15px">
+          <div class="result-img-overlay"></div>
+        </div>
+        <div class="result-info">
+          <div>
+            <div class="result-name">The Grand Residency</div>
+            <div class="result-loc">📍 Civil Lines, Nagpur · 2.3km from centre</div>
+            <div class="result-tags">
+              <span class="tag">Luxury</span><span class="tag">Spa</span><span class="tag">Pool</span><span class="tag">Fine Dining</span>
+            </div>
+            <div class="result-amenities">
+              <span class="amenity">🌐 Free WiFi</span>
+              <span class="amenity">🏊 Pool</span>
+              <span class="amenity">🚗 Parking</span>
+              <span class="amenity">🍳 Breakfast</span>
+            </div>
+          </div>
+          <div style="font-size:0.65rem;color:var(--green)">✓ Free cancellation until Dec 20</div>
+        </div>
+        <div class="result-pricing">
+          <div class="result-rating">
+            <span class="rating-score">9.2</span>
+            <span class="rating-label">Exceptional<br><span style="font-size:0.58rem">1,240 reviews</span></span>
+          </div>
+          <div>
+            <div class="result-price">₹8,500<span>per night</span></div>
+            <button class="btn-book-sm">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-card" onclick="navigateTo('detail')">
+        <div class="result-img" style="background:linear-gradient(135deg,#1f2d40,#152230);background-image:repeating-linear-gradient(135deg,rgba(201,168,76,0.05) 0,rgba(201,168,76,0.05) 1px,transparent 0,transparent 60%);background-size:auto,18px 18px">
+          <div class="result-img-overlay"></div>
+        </div>
+        <div class="result-info">
+          <div>
+            <div class="result-name">Heritage Palace Suites</div>
+            <div class="result-loc">📍 Dharampeth, Nagpur · 1.1km from centre</div>
+            <div class="result-tags"><span class="tag">Heritage</span><span class="tag">Rooftop</span><span class="tag">Wellness</span></div>
+            <div class="result-amenities">
+              <span class="amenity">🌐 Free WiFi</span>
+              <span class="amenity">🍽️ Restaurant</span>
+              <span class="amenity">💆 Spa</span>
+              <span class="amenity">🏋️ Gym</span>
+            </div>
+          </div>
+          <div style="font-size:0.65rem;color:var(--green)">✓ Free cancellation until Jan 5</div>
+        </div>
+        <div class="result-pricing">
+          <div class="result-rating">
+            <span class="rating-score">9.5</span>
+            <span class="rating-label">Exceptional<br><span style="font-size:0.58rem">876 reviews</span></span>
+          </div>
+          <div>
+            <div class="result-price">₹12,000<span>per night</span></div>
+            <button class="btn-book-sm">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-card" onclick="navigateTo('detail')">
+        <div class="result-img" style="background:linear-gradient(135deg,#0f2535,#1a3550);background-image:repeating-linear-gradient(-45deg,rgba(201,168,76,0.04) 0,rgba(201,168,76,0.04) 1px,transparent 0,transparent 40%);background-size:auto,12px 12px">
+          <div class="result-img-overlay"></div>
+        </div>
+        <div class="result-info">
+          <div>
+            <div class="result-name">Skyline Executive Hotel</div>
+            <div class="result-loc">📍 Wardha Road, Nagpur · 4.5km from centre</div>
+            <div class="result-tags"><span class="tag">Business</span><span class="tag">City View</span><span class="tag">Conference</span></div>
+            <div class="result-amenities">
+              <span class="amenity">🌐 Free WiFi</span>
+              <span class="amenity">🚗 Valet</span>
+              <span class="amenity">💼 Business</span>
+              <span class="amenity">🍳 Breakfast</span>
+            </div>
+          </div>
+          <div style="font-size:0.65rem;color:var(--gold)">⚡ Only 2 rooms left!</div>
+        </div>
+        <div class="result-pricing">
+          <div class="result-rating">
+            <span class="rating-score">8.7</span>
+            <span class="rating-label">Excellent<br><span style="font-size:0.58rem">2,104 reviews</span></span>
+          </div>
+          <div>
+            <div class="result-price">₹6,200<span>per night</span></div>
+            <button class="btn-book-sm">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE 3: HOTEL DETAIL ═══ -->
+<div class="page" id="page-detail">
+  <div class="detail-hero">
+    <div class="detail-img-grid">
+      <div class="detail-img-cell" style="background:linear-gradient(135deg,#1a3a5c,#0d2340);background-image:repeating-linear-gradient(45deg,rgba(201,168,76,0.06) 0,rgba(201,168,76,0.06) 1px,transparent 0,transparent 50%);background-size:auto,15px 15px"></div>
+      <div class="detail-img-cell" style="background:linear-gradient(135deg,#0f2535,#1d3a56)"></div>
+      <div class="detail-img-cell" style="background:linear-gradient(135deg,#162844,#0b2035)"></div>
+    </div>
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-content">
+      <div>
+        <div class="detail-hotel-name">The Grand Residency</div>
+        <div class="detail-stars">★★★★★</div>
+        <div class="detail-loc">📍 Civil Lines, Nagpur, Maharashtra</div>
+      </div>
+      <div class="detail-quick">
+        <div class="detail-score">9.2</div>
+        <div>
+          <div style="font-size:0.72rem;font-weight:600;color:var(--white)">Exceptional</div>
+          <div style="font-size:0.63rem;color:var(--muted)">1,240 verified reviews</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-body">
+    <div class="detail-main">
+      <h2 class="section-head">About This Property</h2>
+      <p class="detail-desc">Nestled in the heart of Civil Lines, The Grand Residency is Nagpur's most celebrated luxury address. Spread across three heritage wings, the property seamlessly blends Mughal architecture with contemporary comforts. Each of our 120 rooms and suites has been individually curated by award-winning designers, offering a sanctuary of refined elegance. Our rooftop infinity pool overlooks the city skyline, while Maharaja's Table — our flagship restaurant — serves modern Indian cuisine with Michelin-trained precision.</p>
+
+      <h2 class="section-head">Amenities</h2>
+      <div class="amenities-grid">
+        <div class="amenity-card"><span>🌐</span> Free High-Speed WiFi</div>
+        <div class="amenity-card"><span>🏊</span> Rooftop Infinity Pool</div>
+        <div class="amenity-card"><span>💆</span> Full-Service Spa</div>
+        <div class="amenity-card"><span>🍽️</span> 2 Fine Dining Restaurants</div>
+        <div class="amenity-card"><span>🏋️</span> State-of-Art Gym</div>
+        <div class="amenity-card"><span>🚗</span> Complimentary Valet</div>
+        <div class="amenity-card"><span>✈️</span> Airport Transfers</div>
+        <div class="amenity-card"><span>🧹</span> Daily Housekeeping</div>
+        <div class="amenity-card"><span>🍳</span> Complimentary Breakfast</div>
+      </div>
+
+      <h2 class="section-head">Available Rooms</h2>
+      <div class="room-card" onclick="navigateTo('booking')">
+        <div class="room-img" style="background:linear-gradient(135deg,#1a3a5c,#0d2340)"></div>
+        <div>
+          <div class="room-name">Deluxe King Room</div>
+          <div class="room-features">
+            <span class="room-feat">🛏️ King Bed</span>
+            <span class="room-feat">📐 42 sqm</span>
+            <span class="room-feat">🌇 City View</span>
+            <span class="room-feat">👥 2 Guests</span>
+          </div>
+        </div>
+        <div class="room-price-col">
+          <div class="room-price">₹8,500</div>
+          <div class="room-per-night">per night</div>
+          <button class="btn-book-sm" style="margin-top:10px">Select Room</button>
+        </div>
+      </div>
+      <div class="room-card" onclick="navigateTo('booking')">
+        <div class="room-img" style="background:linear-gradient(135deg,#162844,#0b2035)"></div>
+        <div>
+          <div class="room-name">Premier Suite</div>
+          <div class="room-features">
+            <span class="room-feat">🛏️ Super King</span>
+            <span class="room-feat">📐 68 sqm</span>
+            <span class="room-feat">🌅 Sunrise View</span>
+            <span class="room-feat">👥 3 Guests</span>
+          </div>
+        </div>
+        <div class="room-price-col">
+          <div class="room-price">₹14,200</div>
+          <div class="room-per-night">per night</div>
+          <button class="btn-book-sm" style="margin-top:10px">Select Room</button>
+        </div>
+      </div>
+      <div class="room-card" onclick="navigateTo('booking')">
+        <div class="room-img" style="background:linear-gradient(135deg,#1f2d40,#152230)"></div>
+        <div>
+          <div class="room-name">Presidential Suite</div>
+          <div class="room-features">
+            <span class="room-feat">🛏️ Twin Luxury Beds</span>
+            <span class="room-feat">📐 120 sqm</span>
+            <span class="room-feat">🏙️ Panoramic View</span>
+            <span class="room-feat">👥 4 Guests</span>
+          </div>
+        </div>
+        <div class="room-price-col">
+          <div class="room-price">₹28,000</div>
+          <div class="room-per-night">per night</div>
+          <button class="btn-book-sm" style="margin-top:10px">Select Room</button>
+        </div>
+      </div>
+
+      <h2 class="section-head" style="margin-top:28px">Guest Reviews</h2>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-header"><span class="reviewer">Priya Sharma</span><span class="review-stars">★★★★★</span></div>
+          <p class="review-text">Absolutely breathtaking stay. The rooftop pool at sunset is an experience I'll never forget. Staff were incredibly attentive throughout.</p>
+          <div class="review-date">December 2024</div>
+        </div>
+        <div class="review-card">
+          <div class="review-header"><span class="reviewer">Rahul Mehta</span><span class="review-stars">★★★★★</span></div>
+          <p class="review-text">The Presidential Suite is worth every rupee. Came for our anniversary and they had rose petals and champagne waiting. Pure class.</p>
+          <div class="review-date">November 2024</div>
+        </div>
+        <div class="review-card">
+          <div class="review-header"><span class="reviewer">Sarah Mitchell</span><span class="review-stars">★★★★☆</span></div>
+          <p class="review-text">Outstanding food at Maharaja's Table. The tasting menu was a journey through India's culinary heritage. Highly recommend the breakfast spread too.</p>
+          <div class="review-date">October 2024</div>
+        </div>
+        <div class="review-card">
+          <div class="review-header"><span class="reviewer">Aditya Kulkarni</span><span class="review-stars">★★★★★</span></div>
+          <p class="review-text">The spa experience was transformative. The Ayurvedic treatments and the serene ambiance made this the most relaxing weekend of my year.</p>
+          <div class="review-date">October 2024</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Sidebar -->
+    <div class="booking-sidebar">
+      <div class="sidebar-price">₹8,500</div>
+      <div class="sidebar-per">per night · taxes included</div>
+      <div class="sb-dates">
+        <div class="sb-field">
+          <label class="sb-label">Check-In</label>
+          <input type="date" class="sb-input">
+        </div>
+        <div class="sb-field">
+          <label class="sb-label">Check-Out</label>
+          <input type="date" class="sb-input">
+        </div>
+      </div>
+      <div class="sb-field" style="margin-top:14px">
+        <label class="sb-label">Guests</label>
+        <select class="sb-input">
+          <option>1 Adult</option>
+          <option selected>2 Adults</option>
+          <option>2 Adults, 1 Child</option>
+          <option>2 Adults, 2 Children</option>
+        </select>
+      </div>
+      <div class="price-breakdown">
+        <div class="pb-row"><span>₹8,500 × 3 nights</span><span>₹25,500</span></div>
+        <div class="pb-row"><span>Taxes & fees (12%)</span><span>₹3,060</span></div>
+        <div class="pb-row"><span>PG Gold discount</span><span style="color:var(--green)">−₹2,000</span></div>
+        <div class="pb-row total"><span>Total</span><span>₹26,560</span></div>
+      </div>
+      <button class="btn-primary" style="width:100%;border-radius:12px" onclick="navigateTo('booking')">Reserve Now →</button>
+      <div style="text-align:center;margin-top:10px;font-size:0.62rem;color:var(--muted)">Free cancellation · No payment today</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE 4: BOOKING & CHECKOUT ═══ -->
+<div class="page" id="page-booking">
+  <div class="checkout-layout">
+    <div class="checkout-main">
+      <!-- Steps -->
+      <div class="step-progress">
+        <div class="step done"><div class="step-dot">✓</div><div class="step-name">Room</div></div>
+        <div class="step active"><div class="step-dot">2</div><div class="step-name">Guest Info</div></div>
+        <div class="step"><div class="step-dot">3</div><div class="step-name">Add-ons</div></div>
+        <div class="step"><div class="step-dot">4</div><div class="step-name">Payment</div></div>
+        <div class="step"><div class="step-dot">5</div><div class="step-name">Confirm</div></div>
+      </div>
+
+      <!-- Guest Info -->
+      <div class="checkout-card">
+        <div class="checkout-section-title">👤 Guest Information</div>
+        <div class="co-grid">
+          <div class="co-field"><label class="co-label">First Name</label><input class="co-input" type="text" placeholder="Rahul" value="Rahul"></div>
+          <div class="co-field"><label class="co-label">Last Name</label><input class="co-input" type="text" placeholder="Sharma" value="Sharma"></div>
+          <div class="co-field co-full"><label class="co-label">Email Address</label><input class="co-input" type="email" placeholder="rahul@example.com" value="rahul.sharma@gmail.com"></div>
+          <div class="co-field"><label class="co-label">Phone Number</label><input class="co-input" type="tel" placeholder="+91 98765 43210"></div>
+          <div class="co-field"><label class="co-label">Country</label>
+            <select class="co-input"><option selected>India</option><option>UAE</option><option>USA</option><option>UK</option></select>
+          </div>
+          <div class="co-field co-full"><label class="co-label">Special Requests</label><input class="co-input" type="text" placeholder="Late check-in, anniversary setup, dietary requirements..."></div>
+        </div>
+      </div>
+
+      <!-- Add-ons -->
+      <div class="checkout-card">
+        <div class="checkout-section-title">✨ Enhance Your Stay</div>
+        <div class="addon-grid">
+          <div class="addon-card selected"><div class="addon-icon">🍳</div><div><div class="addon-name">Breakfast Buffet</div><div class="addon-price">+₹800/person/day</div></div></div>
+          <div class="addon-card"><div class="addon-icon">🚗</div><div><div class="addon-name">Airport Transfer</div><div class="addon-price">+₹1,200 one-way</div></div></div>
+          <div class="addon-card"><div class="addon-icon">💆</div><div><div class="addon-name">Spa Package (60 min)</div><div class="addon-price">+₹2,500/person</div></div></div>
+          <div class="addon-card"><div class="addon-icon">🌹</div><div><div class="addon-name">Romance Turndown</div><div class="addon-price">+₹1,800</div></div></div>
+          <div class="addon-card"><div class="addon-icon">🍾</div><div><div class="addon-name">Welcome Champagne</div><div class="addon-price">+₹3,200</div></div></div>
+          <div class="addon-card"><div class="addon-icon">🏊</div><div><div class="addon-name">Private Pool Access</div><div class="addon-price">+₹4,000/day</div></div></div>
+        </div>
+      </div>
+
+      <!-- Payment -->
+      <div class="checkout-card">
+        <div class="checkout-section-title">💳 Payment Details</div>
+        <div class="payment-methods">
+          <div class="pay-opt selected"><span class="pay-icon">💳</span> Credit / Debit Card</div>
+          <div class="pay-opt"><span class="pay-icon">📱</span> UPI</div>
+          <div class="pay-opt"><span class="pay-icon">🏦</span> Net Banking</div>
+        </div>
+        <div class="card-row">
+          <div class="co-field co-full" style="grid-column:1/-1"><label class="co-label">Card Number</label><input class="co-input" type="text" placeholder="1234  5678  9012  3456"></div>
+        </div>
+        <div class="co-grid" style="margin-top:14px">
+          <div class="co-field"><label class="co-label">Cardholder Name</label><input class="co-input" type="text" placeholder="RAHUL SHARMA"></div>
+          <div class="co-field"><label class="co-label">Expiry Date</label><input class="co-input" type="text" placeholder="MM / YY"></div>
+          <div class="co-field" style="grid-column:unset"><label class="co-label">CVV</label><input class="co-input" type="text" placeholder="•••"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="order-summary">
+      <div class="os-title">Your Booking Summary</div>
+      <div class="os-hotel">
+        <div class="os-hotel-img" style="background:linear-gradient(135deg,#1a3a5c,#0d2340)"></div>
+        <div>
+          <div class="os-hotel-name">The Grand Residency</div>
+          <div class="os-hotel-room">Deluxe King Room</div>
+          <div style="font-size:0.62rem;color:var(--gold);margin-top:4px">★★★★★ · Civil Lines, Nagpur</div>
+        </div>
+      </div>
+      <div class="os-dates">
+        <div class="os-date-item"><div class="os-date-label">Check-In</div><div class="os-date-val">Jan 15, 2025</div></div>
+        <div class="os-date-item"><div class="os-date-label">Check-Out</div><div class="os-date-val">Jan 18, 2025</div></div>
+      </div>
+      <div class="os-line"><span>3 nights × ₹8,500</span><span>₹25,500</span></div>
+      <div class="os-line"><span>Breakfast (2 persons × 3)</span><span>₹4,800</span></div>
+      <div class="os-line"><span>Taxes (12%)</span><span>₹3,636</span></div>
+      <div class="os-line"><span style="color:var(--green)">PG Gold Discount</span><span style="color:var(--green)">−₹2,000</span></div>
+      <div class="os-total-line"><span>Total Amount</span><span>₹31,936</span></div>
+      <button class="btn-confirm" onclick="navigateTo('dashboard')">Confirm & Pay ₹31,936 →</button>
+      <div class="secure-note">🔒 256-bit SSL encrypted payment</div>
+      <div style="text-align:center;margin-top:8px;font-size:0.6rem;color:var(--muted)">Free cancellation until Jan 12, 2025</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE 5: DASHBOARD ═══ -->
+<div class="page" id="page-dashboard">
+  <div class="dash-layout">
+    <!-- Sidebar -->
+    <div class="dash-sidebar">
+      <div class="user-profile-card">
+        <div class="avatar">RS</div>
+        <div class="user-name">Rahul Sharma</div>
+        <div class="user-tier">⭐ PG Gold Member</div>
+        <div class="user-points">Loyalty Points: <strong>4,820</strong></div>
+      </div>
+      <div class="dash-menu">
+        <div class="dash-menu-item active"><span class="dash-menu-icon">📊</span> Overview</div>
+        <div class="dash-menu-item"><span class="dash-menu-icon">🏨</span> My Bookings</div>
+        <div class="dash-menu-item"><span class="dash-menu-icon">❤️</span> Saved Hotels</div>
+        <div class="dash-menu-item"><span class="dash-menu-icon">⭐</span> Loyalty Rewards</div>
+        <div class="dash-menu-item"><span class="dash-menu-icon">👤</span> Profile & Settings</div>
+        <div class="dash-menu-item"><span class="dash-menu-icon">🧾</span> Invoices</div>
+        <div class="dash-menu-item"><span class="dash-menu-icon">🔔</span> Notifications</div>
+        <div class="dash-menu-item"><span class="dash-menu-icon">🚪</span> Sign Out</div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="dash-main">
+      <div class="dash-greeting">Good evening, Rahul ✦</div>
+      <div class="dash-date">Monday, April 20, 2026</div>
+
+      <!-- KPIs -->
+      <div class="kpi-grid">
+        <div class="kpi-card"><div class="kpi-label">Total Stays</div><div class="kpi-val">14</div><div class="kpi-change">↑ 3 this year</div></div>
+        <div class="kpi-card"><div class="kpi-label">Loyalty Points</div><div class="kpi-val">4,820</div><div class="kpi-change">↑ 420 this month</div></div>
+        <div class="kpi-card"><div class="kpi-label">Nights Booked</div><div class="kpi-val">38</div><div class="kpi-change">↑ 8 this year</div></div>
+        <div class="kpi-card"><div class="kpi-label">Total Spent</div><div class="kpi-val">₹2.4L</div><div class="kpi-change">↑ ₹48K this year</div></div>
+      </div>
+
+      <!-- Upcoming & Saved -->
+      <div class="dash-2col">
+        <div>
+          <div class="dash-block-title">Upcoming Bookings <button class="view-all">View all →</button></div>
+          <div class="upcoming-list">
+            <div class="upcoming-card">
+              <div class="uc-date-box"><div class="uc-day">15</div><div class="uc-month">Jan</div></div>
+              <div>
+                <div class="uc-hotel">The Grand Residency</div>
+                <div class="uc-details">Civil Lines, Nagpur · 3 nights · Deluxe King</div>
+              </div>
+              <div class="uc-status">
+                <span class="status-badge confirmed">Confirmed</span>
+                <span class="uc-price">₹31,936</span>
+              </div>
+            </div>
+            <div class="upcoming-card">
+              <div class="uc-date-box"><div class="uc-day">28</div><div class="uc-month">Feb</div></div>
+              <div>
+                <div class="uc-hotel">Heritage Palace Suites</div>
+                <div class="uc-details">Dharampeth, Nagpur · 2 nights · Premier Suite</div>
+              </div>
+              <div class="uc-status">
+                <span class="status-badge pending">Pending</span>
+                <span class="uc-price">₹28,400</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="dash-block-title">Saved Hotels <button class="view-all">View all →</button></div>
+          <div class="saved-mini">
+            <div class="saved-img" style="background:linear-gradient(135deg,#1a3a5c,#0d2340)"></div>
+            <div><div class="saved-name">The Grand Residency</div><div class="saved-loc">📍 Civil Lines, Nagpur</div></div>
+            <div class="saved-price">₹8,500/night</div>
+          </div>
+          <div class="saved-mini">
+            <div class="saved-img" style="background:linear-gradient(135deg,#1f2d40,#152230)"></div>
+            <div><div class="saved-name">Heritage Palace Suites</div><div class="saved-loc">📍 Dharampeth, Nagpur</div></div>
+            <div class="saved-price">₹12,000/night</div>
+          </div>
+          <div class="saved-mini">
+            <div class="saved-img" style="background:linear-gradient(135deg,#0f2535,#1a3550)"></div>
+            <div><div class="saved-name">Skyline Executive</div><div class="saved-loc">📍 Wardha Road, Nagpur</div></div>
+            <div class="saved-price">₹6,200/night</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loyalty + Activity -->
+      <div class="dash-2col">
+        <div>
+          <div class="dash-block-title">Loyalty Progress</div>
+          <div class="loyalty-bar-wrap">
+            <div class="loyalty-tiers">
+              <span class="loyalty-tier-label inactive">Silver</span>
+              <span class="loyalty-tier-label active">Gold ✦</span>
+              <span class="loyalty-tier-label inactive">Platinum</span>
+              <span class="loyalty-tier-label inactive">Diamond</span>
+            </div>
+            <div class="loy-track"><div class="loy-fill"></div></div>
+            <div class="loy-caption">1,180 more points to reach Platinum status</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:10px;padding:14px;text-align:center">
+              <div style="font-size:1.5rem;font-weight:700;color:var(--gold);font-family:'Cormorant Garamond',serif">4,820</div>
+              <div style="font-size:0.62rem;color:var(--muted);margin-top:2px">Available Points</div>
+            </div>
+            <div style="background:rgba(76,175,125,0.08);border:1px solid rgba(76,175,125,0.2);border-radius:10px;padding:14px;text-align:center">
+              <div style="font-size:1.5rem;font-weight:700;color:var(--green);font-family:'Cormorant Garamond',serif">₹4,820</div>
+              <div style="font-size:0.62rem;color:var(--muted);margin-top:2px">Redeemable Value</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="dash-block-title">Recent Activity</div>
+          <div class="activity-list">
+            <div class="activity-item">
+              <div class="act-icon">🏨</div>
+              <div><div class="act-text">Checked out – The Grand Residency</div><div class="act-sub">Nagpur · 2 nights</div></div>
+              <div class="act-time">Dec 18</div>
+            </div>
+            <div class="activity-item">
+              <div class="act-icon">⭐</div>
+              <div><div class="act-text">Earned 850 loyalty points</div><div class="act-sub">Stay reward + bonus</div></div>
+              <div class="act-time">Dec 18</div>
+            </div>
+            <div class="activity-item">
+              <div class="act-icon">💳</div>
+              <div><div class="act-text">Payment received – ₹18,400</div><div class="act-sub">Booking #PGH-2024-0892</div></div>
+              <div class="act-time">Dec 10</div>
+            </div>
+            <div class="activity-item">
+              <div class="act-icon">✍️</div>
+              <div><div class="act-text">Review submitted – 5 stars</div><div class="act-sub">Heritage Palace Suites</div></div>
+              <div class="act-time">Nov 25</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Navigation ──
+const pages = ['home','search','detail','booking','dashboard'];
+function navigateTo(id) {
+  pages.forEach(p => {
+    document.getElementById('page-'+p).classList.remove('active');
+    document.getElementById('nav-'+p).classList.remove('active');
+  });
+  const page = document.getElementById('page-'+id);
+  page.classList.add('active');
+  document.getElementById('nav-'+id).classList.add('active');
+  window.scrollTo(0,0);
+  animatePage(id);
+}
+
+// ── GSAP Page Animations ──
+function animatePage(id) {
+  const tl = gsap.timeline({ defaults:{ ease:'power3.out' } });
+
+  if (id === 'home') {
+    tl.from('.hero-eyebrow', { opacity:0, y:20, duration:0.6 }, 0.1)
+      .from('.hero-title',   { opacity:0, y:40, duration:0.8 }, 0.25)
+      .from('.hero-sub',     { opacity:0, y:20, duration:0.6 }, 0.5)
+      .from('.hero-actions', { opacity:0, y:20, duration:0.5 }, 0.7)
+      .from('.hero-search',  { opacity:0, y:30, duration:0.7 }, 0.85)
+      .from('.hero-stats',   { opacity:0, y:20, duration:0.6 }, 1.0)
+      .from('.stat-num',     { textContent:0, duration:1.2, snap:{textContent:1}, stagger:0.1, ease:'power2.out' }, 1.0)
+      .from('.feat-card',    { opacity:0, y:30, stagger:0.1, duration:0.5 }, 1.1)
+      .from('.hotel-thumb',  { opacity:0, y:30, stagger:0.15, duration:0.5 }, 1.3);
+  }
+
+  if (id === 'search') {
+    tl.from('.filter-panel', { opacity:0, x:-30, duration:0.6 }, 0.1)
+      .from('.results-header',{ opacity:0, y:-15, duration:0.5 }, 0.2)
+      .from('.result-card',  { opacity:0, y:25, stagger:0.12, duration:0.5 }, 0.3);
+  }
+
+  if (id === 'detail') {
+    tl.from('.detail-hero',    { opacity:0, duration:0.5 }, 0.05)
+      .from('.detail-hotel-name',{ opacity:0, x:-30, duration:0.6 }, 0.2)
+      .from('.detail-main > *', { opacity:0, y:20, stagger:0.08, duration:0.5 }, 0.35)
+      .from('.booking-sidebar', { opacity:0, x:30, duration:0.6 }, 0.25)
+      .from('.room-card',       { opacity:0, y:20, stagger:0.1, duration:0.4 }, 0.6);
+  }
+
+  if (id === 'booking') {
+    tl.from('.step',          { opacity:0, scale:0.8, stagger:0.08, duration:0.4 }, 0.1)
+      .from('.checkout-card', { opacity:0, y:25, stagger:0.12, duration:0.5 }, 0.35)
+      .from('.order-summary', { opacity:0, x:30, duration:0.6 }, 0.2)
+      .from('.addon-card',    { opacity:0, scale:0.95, stagger:0.07, duration:0.4 }, 0.55);
+  }
+
+  if (id === 'dashboard') {
+    tl.from('.dash-sidebar',    { opacity:0, x:-30, duration:0.6 }, 0.1)
+      .from('.dash-greeting',   { opacity:0, y:-20, duration:0.5 }, 0.2)
+      .from('.kpi-card',        { opacity:0, y:20, stagger:0.08, duration:0.5 }, 0.35)
+      .from('.upcoming-card',   { opacity:0, x:-20, stagger:0.1, duration:0.4 }, 0.55)
+      .from('.saved-mini',      { opacity:0, x:20, stagger:0.1, duration:0.4 }, 0.6)
+      .from('.loyalty-bar-wrap',{ opacity:0, y:20, duration:0.5 }, 0.75)
+      .from('.activity-item',   { opacity:0, x:20, stagger:0.08, duration:0.4 }, 0.8);
+    // Animate loyalty bar
+    gsap.fromTo('.loy-fill', { width:'0%' }, { width:'72%', duration:1.2, ease:'power2.out', delay:0.9 });
+  }
+}
+
+// ── Add-on selection ──
+document.querySelectorAll('.addon-card').forEach(card => {
+  card.addEventListener('click', () => {
+    card.classList.toggle('selected');
+    gsap.fromTo(card, { scale:0.97 }, { scale:1, duration:0.25, ease:'back.out(2)' });
+  });
+});
+
+// ── Payment method selection ──
+document.querySelectorAll('.pay-opt').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('.pay-opt').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    gsap.fromTo(opt, { scale:0.97 }, { scale:1, duration:0.2, ease:'back.out(2)' });
+  });
+});
+
+// ── Star filter ──
+document.querySelectorAll('.star-tag').forEach(tag => {
+  tag.addEventListener('click', () => {
+    document.querySelectorAll('.star-tag').forEach(t => t.classList.remove('active'));
+    tag.classList.add('active');
+  });
+});
+
+// ── Dashboard menu ──
+document.querySelectorAll('.dash-menu-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.dash-menu-item').forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+  });
+});
+
+// ── Button micro-interactions ──
+document.querySelectorAll('.btn-primary, .btn-search, .btn-confirm, .btn-book-sm').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    gsap.timeline()
+      .to(this, { scale:0.95, duration:0.08 })
+      .to(this, { scale:1.02, duration:0.12 })
+      .to(this, { scale:1, duration:0.1 });
+  });
+});
+
+// ── Input focus glow ──
+document.querySelectorAll('input, select').forEach(el => {
+  el.addEventListener('focus', () => gsap.to(el, { scale:1.008, duration:0.2, ease:'power1.out' }));
+  el.addEventListener('blur',  () => gsap.to(el, { scale:1, duration:0.2 }));
+});
+
+// ── Initial load ──
+animatePage('home');
+
+// Floating ambient particles
+const colors = ['rgba(201,168,76,0.07)','rgba(201,168,76,0.04)','rgba(240,244,255,0.03)'];
+for (let i = 0; i < 5; i++) {
+  const p = document.createElement('div');
+  const sz = 80 + Math.random()*160;
+  Object.assign(p.style, {
+    position:'fixed', borderRadius:'50%', pointerEvents:'none', zIndex:'0',
+    width:sz+'px', height:sz+'px',
+    background:colors[i%3],
+    left: (Math.random()*90)+'%',
+    top:  (Math.random()*90)+'%',
+  });
+  document.body.appendChild(p);
+  gsap.to(p, {
+    x: (Math.random()-0.5)*60,
+    y: (Math.random()-0.5)*60,
+    duration: 5 + Math.random()*5,
+    repeat:-1, yoyo:true,
+    ease:'sine.inOut',
+    delay: Math.random()*3,
+  });
+}
+</script>
+</body>
+</html>
