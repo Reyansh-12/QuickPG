@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PG Hotels – Create Account</title>
-    <link rel="stylesheet" href="signupForm.css">
+    <link rel="stylesheet" href="signUPForm.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"> -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
@@ -30,7 +31,7 @@
                 <div class="gold-rule"></div>
                 <div class="brand-headline">Begin Your Journey<br>to Perfect Stays</div>
                 <div class="brand-sub">World-class hospitality.<br>Unforgettable experiences.</div>
-                <a href="#" class="signin-link">Sign In →</a>
+                <a href="LoginForm.php" class="signin-link">Sign In →</a>
             </div>
         </div>
 
@@ -40,7 +41,7 @@
                 <div class="card-sub">Join PG Hotels and start your story</div>
 
                 <div class="name-row">
-                    <div class="field field-anim">
+                    <div class="field field-anim" style="margin-top:16px">
                         <label class="field-label">First Name</label>
                         <input class="field-input" type="text" placeholder="John">
                     </div>
@@ -80,13 +81,13 @@
 
                 <button class="btn-cta"><span>Create My Account →</span></button>
 
-                <div class="divider">
+                <!-- <div class="divider">
                     <div class="divider-line"></div>
                     <div class="divider-text">or continue with</div>
                     <div class="divider-line"></div>
-                </div>
+                </div> -->
 
-                <div class="social-row">
+                <!-- <div class="social-row">
                     <button class="btn-social">
                         <svg viewBox="0 0 24 24" fill="none">
                             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -102,12 +103,13 @@
                         </svg>
                         Facebook
                     </button>
-                </div>
+                </div> -->
             </div>
         </div>
 
     </div>
 
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script> -->
     <script>
         const pw = document.getElementById('pwInput');
         const segs = [document.getElementById('s1'), document.getElementById('s2'), document.getElementById('s3'), document.getElementById('s4')];

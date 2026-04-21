@@ -181,6 +181,13 @@
       box-shadow: 0 6px 28px var(--gold-glow);
     }
     .pg-signup-btn span { position: relative; z-index: 1; }
+    .pg-signup-btn span a{
+        text-decoration: none;
+        color: rgba(201,168,76,0.55);
+    }
+    .pg-signup-btn:hover span a{
+        color: #1a1206;
+    }
     .pg-signup-btn .arrow {
       position: relative;
       z-index: 1;
@@ -373,8 +380,10 @@
       letter-spacing: 0.4px;
       position: relative;
       overflow: hidden;
+      transform: translate(0, 0) !important;
       transition: transform 0.25s ease,
                   box-shadow 0.3s ease;
+                  
     }
     .pg-btn-submit::after {
       content: '';
@@ -455,3 +464,4 @@
     @media (max-width: 480px) {
       .pg-card { padding: 32px 24px; }
     }
+    
