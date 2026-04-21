@@ -292,6 +292,7 @@
       opacity: 0.4;
       pointer-events: none;
       transition: opacity 0.3s;
+      color: var(--text-muted);
     }
 
     .pg-field input {
