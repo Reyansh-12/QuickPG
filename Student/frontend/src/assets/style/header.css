@@ -1,0 +1,28 @@
+
+.header{
+    background-color: #0B172B;
+    z-index: 100;
+}
+.header ul li{
+    color: #f3db05;
+    position: relative;
+    z-index: 1;
+}
+.account-btn{
+    background: #f3cf05;
+}
+.header ul li::before{
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 25px;
+    background: #f3db05;
+    transition: width .5s;
+    z-index: -1;
+}
+.header ul li:hover::before{
+    width: 100%;
+}
+.header ul li:hover{
+    color: #0B172B;
+}
