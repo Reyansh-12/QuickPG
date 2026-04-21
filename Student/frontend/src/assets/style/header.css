@@ -19,6 +19,7 @@
     background: #f3db05;
     transition: width .5s;
     z-index: -1;
+    border-radius: 20px;
 }
 .header ul li:hover::before{
     width: 100%;

@@ -80,4 +80,22 @@ p span{
 .card{
     height: 20vh;
     background: #cdcecb;
+    width: 70%;
+    margin-left: 14%;
+}
+.search{
+    background: #F0F3F8;
+    outline: none;
+}
+.search input:focus{
+    outline: none;
+}
+.list ul li{
+    list-style: none;
+    /* padding: 5px 0; */
+    background: #F0F3F8;
+    border-radius: 10px;
+    margin: 5px 0;
+    padding: 5px 15px;
+    text-wrap: nowrap;
 }

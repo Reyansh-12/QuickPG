@@ -1,4 +1,9 @@
 import "../../assets/style/home.css";
+import { CgBoy, CgGirl } from "react-icons/cg";
+import { IoHome, IoFastFood } from "react-icons/io5";
+import { RiMoneyRupeeCircleFill } from "react-icons/ri";
+import { FaWifi } from "react-icons/fa";
+
 
 const Home = () => {
     return (
@@ -19,20 +24,24 @@ const Home = () => {
                 
             </div>
             <div className="">
-                <div className="card shadow-lg me-5 ms-5" style={{marginTop: '-60px'}}>
-                    <div className="card-body d-flex justify-content-center align-items-center gap-5">
-                        <div className="d-flex flex-column justify-content-center align-items-center">
-                            <input type="search" />
-                        </div>
-                        <div className="d-flex flex-column justify-content-center align-items-center">
-                            
-                        </div>
-                        <div className="d-flex flex-column justify-content-center align-items-center">
-                            
-                        </div>
+                <div className="card search-box shadow-lg mt-5 p-5 rounded-4">
+                    <h3>Find your PG</h3>
+                    <p>Search by city, locality, or landmark</p>
+                    <div className="d-flex search justify-content-start rounded-3 p-2 align-items-center gap-1">
+                        <input type="search" className="border border-0 p-2 bg-transparent" placeholder="e.g Koregaon Park, Pune, or Indiranagar, Bangalore" style={{width:'87%'}} />
+                        <button className="btn text-black bg-warning">Search PG</button>
+                    </div>
+                    <div className="list">
+                        <ul className="d-flex row row-cols-6 justify-content-start gap-4 mt-3">
+                            <li className=""><CgBoy /> Boys PG</li>
+                            <li><CgGirl />Girls PG</li>
+                            <li><IoHome />Co-living</li>
+                            <li><IoFastFood />With Meals</li>
+                            <li><RiMoneyRupeeCircleFill />Under 8K</li>
+                            <li><FaWifi />WiFi Included</li>
+                        </ul>
                     </div>
                 </div>
-                <h1>Reyansh</h1>
             </div>
         </>
     );
