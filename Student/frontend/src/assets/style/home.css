@@ -80,8 +80,8 @@ p span{
 .card{
     height: 20vh;
     background: #cdcecb;
-    width: 70%;
-    margin-left: 14%;
+    width: 91%;
+    margin-left: 5%;
 }
 .search{
     background: #F0F3F8;
@@ -99,3 +99,157 @@ p span{
     padding: 5px 15px;
     text-wrap: nowrap;
 }
+.filter-heading{
+    font-size: 50px;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    color: #0B172B;
+}
+.card-title{
+    font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+.card-text{
+    font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+.filter-heading em{
+    color: #f5b70e;
+}
+.about-title{
+    font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+.hostel-card-list ul li{
+    list-style: none;
+    background: #F0F3F8;
+    border-radius: 10px;
+    padding: 5px 15px;
+    font-size: 11px;
+}
+.how-works{
+    clip-path: shape(from 0 25px,curve to 1.24% 19.5px with 0.83% 38px,curve to 2.07% 6.5px with 1.65% 1px,curve to 2.89% 14px with 2.48% 12px,curve to 3.72% 21px with 3.31% 16px,curve to 4.55% 29px with 4.13% 26px,curve to 5.37% 16.5px with 4.96% 32px,curve to 6.2% 22px with 5.79% 1px,curve to 7.02% 23px with 6.61% 43px,curve to 7.85% 3px with 7.44% 3px,curve to 8.68% 18.5px with 8.26% 3px,curve to 9.5% 24.5px with 9.09% 34px,curve to 10.33% 28.5px with 9.92% 15px,curve to 11.16% 24px with 10.74% 42px,curve to 11.98% 16px with 11.57% 6px,curve to 12.81% 14px with 12.4% 26px,curve to 13.64% 16.5px with 13.22% 2px,curve to 14.46% 29.5px with 14.05% 31px,curve to 15.29% 15.5px with 14.88% 28px,curve to 16.12% 5.5px with 15.7% 3px,curve to 16.94% 6.5px with 16.53% 8px,curve to 17.77% 26px with 17.36% 5px,curve to 18.6% 27px with 18.18% 47px,curve to 19.42% 5.5px with 19.01% 7px,curve to 20.25% 24px with 19.83% 4px,curve to 21.07% 24.5px with 20.66% 44px,curve to 21.9% 17.5px with 21.49% 5px,curve to 22.73% 22px with 22.31% 30px,curve to 23.55% 16px with 23.14% 14px,curve to 24.38% 14.5px with 23.97% 18px,curve to 25.21% 22px with 24.79% 11px,curve to 26.03% 37px with 25.62% 33px,curve to 26.86% 44px with 26.45% 41px,curve to 27.69% 34px with 27.27% 47px,curve to 28.51% 28.5px with 28.1% 21px,curve to 29.34% 19.5px with 28.93% 36px,curve to 30.17% 20px with 29.75% 3px,curve to 30.99% 39.5px with 30.58% 37px,curve to 31.82% 39px with 31.4% 42px,curve to 32.64% 23.5px with 32.23% 36px,curve to 33.47% 22px with 33.06% 11px,curve to 34.3% 37px with 33.88% 33px,curve to 35.12% 26px with 34.71% 41px,curve to 35.95% 10px with 35.54% 11px,curve to 36.78% 26px with 36.36% 9px,curve to 37.6% 25.5px with 37.19% 43px,curve to 38.43% 11.5px with 38.02% 8px,curve to 39.26% 23.5px with 38.84% 15px,curve to 40.08% 26.5px with 39.67% 32px,curve to 40.91% 16px with 40.5% 21px,curve to 41.74% 13px with 41.32% 11px,curve to 42.56% 18px with 42.15% 15px,curve to 43.39% 12.5px with 42.98% 21px,curve to 44.21% 8px with 43.8% 4px,curve to 45.04% 16px with 44.63% 12px,curve to 45.87% 21px with 45.45% 20px,curve to 46.69% 21px with 46.28% 22px,curve to 47.52% 30px with 47.11% 20px,curve to 48.35% 25.5px with 47.93% 40px,curve to 49.17% 26px with 48.76% 11px,curve to 50% 25.5px with 49.59% 41px,curve to 50.83% 29.5px with 50.41% 10px,curve to 51.65% 46px with 51.24% 49px,curve to 52.48% 40px with 52.07% 43px,curve to 53.31% 36px with 52.89% 37px,curve to 54.13% 36.5px with 53.72% 35px,curve to 54.96% 36px with 54.55% 38px,curve to 55.79% 30px with 55.37% 34px,curve to 56.61% 21px with 56.2% 26px,curve to 57.44% 17.5px with 57.02% 16px,curve to 58.26% 16.5px with 57.85% 19px,curve to 59.09% 7px with 58.68% 14px,curve to 59.92% 18px with 59.5% 0px,curve to 60.74% 24px with 60.33% 36px,curve to 61.57% 10px with 61.16% 12px,curve to 62.4% 19.5px with 61.98% 8px,curve to 63.22% 25px with 62.81% 31px,curve to 64.05% 25.5px with 63.64% 19px,curve to 64.88% 36px with 64.46% 32px,curve to 65.7% 26.5px with 65.29% 40px,curve to 66.53% 10.5px with 66.12% 13px,curve to 67.36% 10px with 66.94% 8px,curve to 68.18% 28.5px with 67.77% 12px,curve to 69.01% 34px with 68.6% 45px,curve to 69.83% 26.5px with 69.42% 23px,curve to 70.66% 36.5px with 70.25% 30px,curve to 71.49% 43px with 71.07% 43px,curve to 72.31% 39.5px with 71.9% 43px,curve to 73.14% 20px with 72.73% 36px,curve to 73.97% 5px with 73.55% 4px,curve to 74.79% 24px with 74.38% 6px,curve to 75.62% 37.5px with 75.21% 42px,curve to 76.45% 29px with 76.03% 33px,curve to 77.27% 27.5px with 76.86% 25px,curve to 78.1% 31.5px with 77.69% 30px,curve to 78.93% 19.5px with 78.51% 33px,curve to 79.75% 6.5px with 79.34% 6px,curve to 80.58% 13.5px with 80.17% 7px,curve to 81.4% 33.5px with 80.99% 20px,curve to 82.23% 44px with 81.82% 47px,curve to 83.06% 41px with 82.64% 41px,curve to 83.88% 38.5px with 83.47% 41px,curve to 84.71% 23.5px with 84.3% 36px,curve to 85.54% 20px with 85.12% 11px,curve to 86.36% 23px with 85.95% 29px,curve to 87.19% 27.5px with 86.78% 17px,curve to 88.02% 27.5px with 87.6% 38px,curve to 88.84% 10.5px with 88.43% 17px,curve to 89.67% 21px with 89.26% 4px,curve to 90.5% 25px with 90.08% 38px,curve to 91.32% 27.5px with 90.91% 12px,curve to 92.15% 39.5px with 91.74% 43px,curve to 92.98% 21.5px with 92.56% 36px,curve to 93.8% 24.5px with 93.39% 7px,curve to 94.63% 28px with 94.21% 42px,curve to 95.45% 27.5px with 95.04% 14px,curve to 96.28% 28px with 95.87% 41px,curve to 97.11% 9.5px with 96.69% 15px,curve to 97.93% 25.5px with 97.52% 4px,curve to 98.76% 42.5px with 98.35% 47px,curve to 100% 25px with 99.17% 38px,vline to calc(100% - 25px),curve to 98.76% calc(100% - 26px) with 99.17% calc(100% - 33px),curve to 97.93% calc(100% - 31.5px) with 98.35% calc(100% - 19px),curve to 97.11% calc(100% - 27px) with 97.52% calc(100% - 44px),curve to 96.28% calc(100% - 20.5px) with 96.69% calc(100% - 10px),curve to 95.45% calc(100% - 30px) with 95.87% calc(100% - 31px),curve to 94.63% calc(100% - 28.5px) with 95.04% calc(100% - 29px),curve to 93.8% calc(100% - 32px) with 94.21% calc(100% - 28px),curve to 92.98% calc(100% - 39px) with 93.39% calc(100% - 36px),curve to 92.15% calc(100% - 40.5px) with 92.56% calc(100% - 42px),curve to 91.32% calc(100% - 24px) with 91.74% calc(100% - 39px),curve to 90.5% calc(100% - 11px) with 90.91% calc(100% - 9px),curve to 89.67% calc(100% - 20.5px) with 90.08% calc(100% - 13px),curve to 88.84% calc(100% - 37px) with 89.26% calc(100% - 28px),curve to 88.02% calc(100% - 43px) with 88.43% calc(100% - 46px),curve to 87.19% calc(100% - 41.5px) with 87.6% calc(100% - 40px),curve to 86.36% calc(100% - 45px) with 86.78% calc(100% - 43px),curve to 85.54% calc(100% - 29px) with 85.95% calc(100% - 47px),curve to 84.71% calc(100% - 13.5px) with 85.12% calc(100% - 11px),curve to 83.88% calc(100% - 21.5px) with 84.3% calc(100% - 16px),curve to 83.06% calc(100% - 16.5px) with 83.47% calc(100% - 27px),curve to 82.23% calc(100% - 5.5px) with 82.64% calc(100% - 6px),curve to 81.4% calc(100% - 13.5px) with 81.82% calc(100% - 5px),curve to 80.58% calc(100% - 25px) with 80.99% calc(100% - 22px),curve to 79.75% calc(100% - 20.5px) with 80.17% calc(100% - 28px),curve to 78.93% calc(100% - 24.5px) with 79.34% calc(100% - 13px),curve to 78.1% calc(100% - 40.5px) with 78.51% calc(100% - 36px),curve to 77.27% calc(100% - 32px) with 77.69% calc(100% - 45px),curve to 76.45% calc(100% - 11.5px) with 76.86% calc(100% - 19px),curve to 75.62% calc(100% - 3px) with 76.03% calc(100% - 4px),curve to 74.79% calc(100% - 10.5px) with 75.21% calc(100% - 2px),curve to 73.97% calc(100% - 29.5px) with 74.38% calc(100% - 19px),curve to 73.14% calc(100% - 28.5px) with 73.55% calc(100% - 40px),curve to 72.31% calc(100% - 24px) with 72.73% calc(100% - 17px),curve to 71.49% calc(100% - 31.5px) with 71.9% calc(100% - 31px),curve to 70.66% calc(100% - 23px) with 71.07% calc(100% - 32px),curve to 69.83% calc(100% - 12px) with 70.25% calc(100% - 14px),curve to 69.01% calc(100% - 9px) with 69.42% calc(100% - 10px),curve to 68.18% calc(100% - 26.5px) with 68.6% calc(100% - 8px),curve to 67.36% calc(100% - 30px) with 67.77% calc(100% - 45px),curve to 66.53% calc(100% - 24.5px) with 66.94% calc(100% - 15px),curve to 65.7% calc(100% - 30.5px) with 66.12% calc(100% - 34px),curve to 64.88% calc(100% - 25.5px) with 65.29% calc(100% - 27px),curve to 64.05% calc(100% - 13px) with 64.46% calc(100% - 24px),curve to 63.22% calc(100% - 14.5px) with 63.64% calc(100% - 2px),curve to 62.4% calc(100% - 35px) with 62.81% calc(100% - 27px),curve to 61.57% calc(100% - 28.5px) with 61.98% calc(100% - 43px),curve to 60.74% calc(100% - 17.5px) with 61.16% calc(100% - 14px),curve to 59.92% calc(100% - 35.5px) with 60.33% calc(100% - 21px),curve to 59.09% calc(100% - 49.5px) with 59.5% calc(100% - 50px),curve to 58.26% calc(100% - 47px) with 58.68% calc(100% - 49px),curve to 57.44% calc(100% - 32px) with 57.85% calc(100% - 45px),curve to 56.61% calc(100% - 15.5px) with 57.02% calc(100% - 19px),curve to 55.79% calc(100% - 20px) with 56.2% calc(100% - 12px),curve to 54.96% calc(100% - 24.5px) with 55.37% calc(100% - 28px),curve to 54.13% calc(100% - 22.5px) with 54.55% calc(100% - 21px),curve to 53.31% calc(100% - 17.5px) with 53.72% calc(100% - 24px),curve to 52.48% calc(100% - 29.5px) with 52.89% calc(100% - 11px),curve to 51.65% calc(100% - 44.5px) with 52.07% calc(100% - 48px),curve to 50.83% calc(100% - 35.5px) with 51.24% calc(100% - 41px),curve to 50% calc(100% - 32.5px) with 50.41% calc(100% - 30px),curve to 49.17% calc(100% - 27px) with 49.59% calc(100% - 35px),curve to 48.35% calc(100% - 17.5px) with 48.76% calc(100% - 19px),curve to 47.52% calc(100% - 8.5px) with 47.93% calc(100% - 16px),curve to 46.69% calc(100% - 10px) with 47.11% calc(100% - 1px),curve to 45.87% calc(100% - 14px) with 46.28% calc(100% - 19px),curve to 45.04% calc(100% - 15.5px) with 45.45% calc(100% - 9px),curve to 44.21% calc(100% - 21.5px) with 44.63% calc(100% - 22px),curve to 43.39% calc(100% - 16px) with 43.8% calc(100% - 21px),curve to 42.56% calc(100% - 13.5px) with 42.98% calc(100% - 11px),curve to 41.74% calc(100% - 27.5px) with 42.15% calc(100% - 16px),curve to 40.91% calc(100% - 24.5px) with 41.32% calc(100% - 39px),curve to 40.08% calc(100% - 19.5px) with 40.5% calc(100% - 10px),curve to 39.26% calc(100% - 39.5px) with 39.67% calc(100% - 29px),curve to 38.43% calc(100% - 41.5px) with 38.84% calc(100% - 50px),curve to 37.6% calc(100% - 25.5px) with 38.02% calc(100% - 33px),curve to 36.78% calc(100% - 13px) with 37.19% calc(100% - 18px),curve to 35.95% calc(100% - 25.5px) with 36.36% calc(100% - 8px),curve to 35.12% calc(100% - 39px) with 35.54% calc(100% - 43px),curve to 34.3% calc(100% - 30.5px) with 34.71% calc(100% - 35px),curve to 33.47% calc(100% - 16.5px) with 33.88% calc(100% - 26px),curve to 32.64% calc(100% - 15.5px) with 33.06% calc(100% - 7px),curve to 31.82% calc(100% - 36px) with 32.23% calc(100% - 24px),curve to 30.99% calc(100% - 43px) with 31.4% calc(100% - 48px),curve to 30.17% calc(100% - 43.5px) with 30.58% calc(100% - 38px),curve to 29.34% calc(100% - 31.5px) with 29.75% calc(100% - 49px),curve to 28.51% calc(100% - 16px) with 28.93% calc(100% - 14px),curve to 27.69% calc(100% - 34px) with 28.1% calc(100% - 18px),curve to 26.86% calc(100% - 48px) with 27.27% calc(100% - 50px),curve to 26.03% calc(100% - 34.5px) with 26.45% calc(100% - 46px),curve to 25.21% calc(100% - 14px) with 25.62% calc(100% - 23px),curve to 24.38% calc(100% - 27px) with 24.79% calc(100% - 5px),curve to 23.55% calc(100% - 49px) with 23.97% calc(100% - 49px),curve to 22.73% calc(100% - 32px) with 23.14% calc(100% - 49px),curve to 21.9% calc(100% - 29px) with 22.31% calc(100% - 15px),curve to 21.07% calc(100% - 42px) with 21.49% calc(100% - 43px),curve to 20.25% calc(100% - 42.5px) with 20.66% calc(100% - 41px),curve to 19.42% calc(100% - 45.5px) with 19.83% calc(100% - 44px),curve to 18.6% calc(100% - 40.5px) with 19.01% calc(100% - 47px),curve to 17.77% calc(100% - 21px) with 18.18% calc(100% - 34px),curve to 16.94% calc(100% - 27.5px) with 17.36% calc(100% - 8px),curve to 16.12% calc(100% - 45.5px) with 16.53% calc(100% - 47px),curve to 15.29% calc(100% - 46px) with 15.7% calc(100% - 44px),curve to 14.46% calc(100% - 24.5px) with 14.88% calc(100% - 48px),curve to 13.64% calc(100% - 19.5px) with 14.05% calc(100% - 1px),curve to 12.81% calc(100% - 24px) with 13.22% calc(100% - 38px),curve to 11.98% calc(100% - 9px) with 12.4% calc(100% - 10px),curve to 11.16% calc(100% - 22px) with 11.57% calc(100% - 8px),curve to 10.33% calc(100% - 31.5px) with 10.74% calc(100% - 36px),curve to 9.5% calc(100% - 38px) with 9.92% calc(100% - 27px),curve to 8.68% calc(100% - 40.5px) with 9.09% calc(100% - 49px),curve to 7.85% calc(100% - 35px) with 8.26% calc(100% - 32px),curve to 7.02% calc(100% - 27px) with 7.44% calc(100% - 38px),curve to 6.2% calc(100% - 11px) with 6.61% calc(100% - 16px),curve to 5.37% calc(100% - 10.5px) with 5.79% calc(100% - 6px),curve to 4.55% calc(100% - 29.5px) with 4.96% calc(100% - 15px),curve to 3.72% calc(100% - 32.5px) with 4.13% calc(100% - 44px),curve to 2.89% calc(100% - 18px) with 3.31% calc(100% - 21px),curve to 2.07% calc(100% - 21.5px) with 2.48% calc(100% - 15px),curve to 1.24% calc(100% - 26.5px) with 1.65% calc(100% - 28px),curve to 0 calc(100% - 25px) with 0.83% calc(100% - 25px),vline to 0);
+
+}
+
+.how-works .dotted-line::after{
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 5px;
+    margin-left: 20px;
+    margin-top: 25px;
+    border-top: 5px dotted yellow;
+}
+.stamp {
+    --r: 20px;
+  
+    height: 250px;
+    aspect-ratio: 1.5;
+    padding: var(--r);
+    background: #b3b39c;
+    mask: 
+      radial-gradient(50% 50%,#0000 66%,#000 67%) round 
+       var(--r) var(--r)/calc(2*var(--r)) calc(2*var(--r)), 
+      conic-gradient(#000 0 0) content-box;
+  }
+  
+.ribbon {
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+  }
+  .ribbon {
+    --f: .5em;
+    --r: .8em; 
+    
+    position: absolute;
+    top: 20px;
+    right: calc(-1*var(--f));
+    padding-inline: .25em;
+    line-height: 1.8;
+    background: #FA6900;
+    border-bottom: var(--f) solid #0005;
+    border-left: var(--r) solid #0000;
+    clip-path: 
+      polygon(var(--r) 0,100% 0,100% calc(100% - var(--f)),calc(100% - var(--f)) 100%,
+        calc(100% - var(--f)) calc(100% - var(--f)),var(--r) calc(100% - var(--f)),
+        0 calc(50% - var(--f)/2));
+  }
+.badge {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+    position: absolute;
+  }
+  .badge {
+    --r: .8em; 
+    border-block: .5em solid #0000;
+    padding-inline: .5em calc(var(--r) + .25em);
+    line-height: 1.8;
+    clip-path: polygon(100% 0,0 0,0 100%,100% 100%,calc(100% - var(--r)) calc(100% - .25em),100% 50%,calc(100% - var(--r)) .25em);
+    background:
+     radial-gradient(.2em 50% at left,#000a,#0000) border-box,
+     #ca0202 padding-box; 
+    width: fit-content;
+  }
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.boys {
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+  }
+  .boys {
+    --r: .8em; 
+    
+    padding-inline: calc(var(--r) + .3em);
+    line-height: 1.8;
+    clip-path: polygon(0 0,100% 0,calc(100% - var(--r)) 50%,100% 100%,0 100%, var(--r) 50%);
+    background: #CC333F; 
+    width: fit-content;
+  }

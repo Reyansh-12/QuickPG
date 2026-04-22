@@ -36,7 +36,7 @@ if (isset($_POST["submit"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PG Hotels – Create Account</title>
+    <title>PG Hostel – Create Account</title>
     
     <link rel="stylesheet" href="signUPForm.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap">
@@ -60,7 +60,7 @@ if (isset($_POST["submit"])) {
     <div class="wrapper">
         <div class="panel-left">
             <div class="brand-wrap">
-                <div class="brand-name">PG Hotels</div>
+                <div class="brand-name">PG Hostel</div>
                 <div class="brand-tagline">Luxury Redefined</div>
                 <div class="gold-rule"></div>
                 <div class="brand-headline">Begin Your Journey<br>to Perfect Stays</div>
@@ -72,7 +72,7 @@ if (isset($_POST["submit"])) {
         <div class="panel-right">
             <div class="card">
                 <div class="card-title">Create Account</div>
-                <div class="card-sub">Join PG Hotels and start your story</div>
+                <div class="card-sub">Join PG Hostel and start your story</div>
                 
                 <?php if($message) echo "<div class='msg-box' style='color:red; text-align:center;'>$message</div>"; ?>
 
