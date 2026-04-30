@@ -1,29 +1,204 @@
-
-.header{
-    background-color: #0B172B;
-    z-index: 100;
-}
-.header ul li{
-    color: #f3db05;
-    position: relative;
-    z-index: 1;
-}
-.account-btn{
-    background: #f3cf05;
-}
-.header ul li::before{
-    content: "";
-    position: absolute;
-    width: 0px;
-    height: 25px;
-    background: #f3db05;
-    transition: width .5s;
-    z-index: -1;
-    border-radius: 20px;
-}
-.header ul li:hover::before{
+.header-wrap {
+    position: fixed;
+    top: 14px;
+    left: 0;
     width: 100%;
+    z-index: 120;
+    padding: 0 1rem;
 }
-.header ul li:hover{
-    color: #0B172B;
+
+.header {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    border-radius: 18px;
+    background: rgba(11, 23, 43, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 24px rgba(2, 8, 24, 0.25);
+}
+
+.brand-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    position: relative;
+    background: linear-gradient(145deg, #f3d035, #ffd863);
+    box-shadow: 0 8px 18px rgba(243, 208, 53, 0.35);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-mark-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #0b172b;
+    position: absolute;
+    top: 9px;
+    left: 9px;
+}
+
+.brand-mark-bars {
+    width: 18px;
+    height: 18px;
+    border-radius: 8px 8px 4px 4px;
+    border: 2px solid #0b172b;
+    border-bottom-width: 4px;
+    transform: rotate(-8deg);
+}
+
+.brand-title {
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    line-height: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-title span {
+    background: linear-gradient(90deg, #f3d035, #ffe48f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.brand-title small {
+    margin-top: 3px;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 1.1px;
+    color: rgba(238, 245, 255, 0.75);
+}
+
+.brand-link {
+    color: inherit;
+}
+
+.header-nav ul {
+    margin: 0;
+}
+
+.nav-pill {
+    display: inline-block;
+    text-decoration: none;
+    color: #f8fafc;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.94rem;
+    font-weight: 600;
+    transition: all 0.22s ease;
+}
+
+.nav-pill:hover {
+    color: #0b172b;
+    background: #f3d035;
+    transform: translateY(-1px);
+}
+
+.nav-pill.active {
+    color: #0b172b;
+    background: #f3d035;
+}
+
+.account-btn {
+    background: linear-gradient(145deg, #f3d035, #ffd863);
+    color: #0b172b;
+    border-radius: 999px;
+    padding: 0.5rem 1.15rem;
+    font-weight: 700;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.account-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(243, 208, 53, 0.35);
+}
+
+.theme-btn {
+    background: rgba(255, 255, 255, 0.14);
+    color: #f8fafc;
+    border-radius: 999px;
+    padding: 0.5rem 0.95rem;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    transition: transform 0.22s ease, background 0.22s ease;
+}
+
+.theme-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.24);
+}
+
+.theme-dark .header {
+    background: rgba(4, 12, 27, 0.86);
+    border-color: rgba(142, 175, 234, 0.26);
+}
+
+.theme-dark .brand-mark {
+    box-shadow: 0 8px 20px rgba(243, 208, 53, 0.2);
+}
+
+.theme-dark .nav-pill {
+    color: #d6e5ff;
+}
+
+.theme-dark .theme-btn {
+    background: rgba(243, 208, 53, 0.18);
+    border-color: rgba(243, 208, 53, 0.4) !important;
+    color: #ffe58f;
+}
+
+@media (max-width: 992px) {
+    .header {
+        padding: 0.7rem 0.8rem;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+        justify-content: center !important;
+    }
+
+    .header-nav {
+        width: 100%;
+        overflow-x: auto;
+        scrollbar-width: thin;
+    }
+
+    .header-nav ul {
+        width: max-content;
+        padding-bottom: 0.2rem;
+        margin: 0 auto;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-wrap {
+        top: 8px;
+        padding: 0 0.6rem;
+    }
+
+    .brand-title {
+        font-size: 1.1rem;
+    }
+
+    .brand-title small {
+        font-size: 0.55rem;
+    }
+
+    .nav-pill {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.75rem;
+    }
+
+    .account-btn {
+        padding: 0.45rem 0.95rem;
+        font-size: 0.88rem;
+    }
 }

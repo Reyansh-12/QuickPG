@@ -1,5 +1,56 @@
 <?php
 include "dbConnection.php";
+
+$message = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = trim($_POST["user_email"] ?? "");
+    $password = $_POST["user_password"] ?? "";
+
+    if ($email === "" || $password === "") {
+        $message = "Please enter email and password.";
+    } else {
+        $stmt = $con->prepare("SELECT user_name, user_email, password, role, status FROM auth_roles WHERE user_email = ? LIMIT 1");
+
+        if ($stmt) {
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $user = $result ? $result->fetch_assoc() : null;
+            $stmt->close();
+
+            if (!$user) {
+                $message = "Account not found.";
+            } elseif (($user["status"] ?? "") !== "active") {
+                $message = "Your account is not active. Please contact support.";
+            } elseif (!password_verify($password, $user["password"])) {
+                $message = "Invalid password.";
+            } else {
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+
+                $_SESSION["user_name"] = $user["user_name"];
+                $_SESSION["user_email"] = $user["user_email"];
+                $_SESSION["role"] = $user["role"];
+
+                if ($user["role"] === "pg_owner") {
+                    header("Location: ../Admin/dashboard/home.php");
+                    exit();
+                }
+
+                if ($user["role"] === "user") {
+                    header("Location: ../Student/frontend/");
+                    exit();
+                }
+
+                $message = "Unknown role. Please contact support.";
+            }
+        } else {
+            $message = "Something went wrong. Please try again.";
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +58,7 @@ include "dbConnection.php";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PG Hostel — Login</title>
+    <title>QuickPG — Login</title>
     <link rel="stylesheet" href="loginForm.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,6 +68,17 @@ include "dbConnection.php";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.css">
 
     <style>
+        .msg-box {
+            padding: 10px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #ffb7b7;
+            border: 1px solid rgba(255, 77, 77, 0.45);
+            background: rgba(255, 77, 77, 0.12);
+            text-align: center;
+        }
+
         .pg-input-wrap {
             position: relative;
             display: flex;
@@ -69,45 +131,48 @@ include "dbConnection.php";
             <div class="pg-corner br"></div>
 
             <div class="pg-left-content" id="leftContent">
-                <div class="pg-logo-wrap" id="pgLogo">P</div>
-                <div class="pg-brand" id="pgBrand">PG Hostel</div>
-                <div class="pg-tagline" id="pgTagline">Luxury Redefined</div>
+                <div class="pg-logo-wrap" id="pgLogo">QP</div>
+                <div class="pg-brand" id="pgBrand">QuickPG</div>
+                <div class="pg-tagline" id="pgTagline">Verified Stays. Better Living.</div>
                 <div class="pg-divider" id="pgDivider"></div>
 
                 <h1 class="pg-headline" id="pgHeadline">
-                    Find Your Perfect Stay<br>in Nagpur &amp; Beyond
+                    Find Your Perfect PG<br>in Minutes
                 </h1>
                 <p class="pg-subtext" id="pgSubtext">
-                    World-class hospitality.<br>
-                    Unforgettable experiences await you.
+                    Trusted listings, instant booking support,<br>
+                    and zero brokerage surprises.
                 </p>
 
-                <button class="pg-signup-btn" id="signupBtn">
-                    <span><a href="SignUpForm.php">Create Account</a></span>
+                <a class="pg-signup-btn" id="signupBtn" href="SignUpForm.php">
+                    <span>Create Account</span>
                     <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none">
                         <path d="M2 7h10M7.5 2.5L12 7l-4.5 4.5" stroke="currentColor" stroke-width="1.5"
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                </button>
+                </a>
             </div>
         </div>
 
         <div class="pg-right">
             <div class="pg-right-bg"></div>
             <div class="pg-card" id="pgCard">
+                <span class="pg-chip">Secure Login</span>
                 <div class="pg-card-title" id="cardTitle">Welcome Back</div>
                 <p class="pg-card-sub" id="cardSub">Sign in to your account</p>
                 
-                <form action="" data-parsley-validate>
+                <?php if($message) echo "<div class='msg-box'>$message</div>"; ?>
+
+                <form action="" method="POST" data-parsley-validate>
                     
                     <div class="pg-field" id="fEmail">
                         <label for="email">Email Address</label>
                         <div class="pg-input-wrap">
                             <i class="icon bi bi-envelope"></i>
-                            <input type="email" id="email" required
+                            <input type="email" id="email" name="user_email" required
                                 data-parsley-required-message="Please enter a valid email address"
                                 data-parsley-errors-container="#email-errors"
-                                placeholder="you@example.com" autocomplete="email" />
+                                placeholder="you@example.com" autocomplete="email" autofocus />
                         </div>
                         <div id="email-errors" class="error-container"></div>
                     </div>
@@ -116,7 +181,7 @@ include "dbConnection.php";
                         <label for="password">Password</label>
                         <div class="pg-input-wrap">
                             <i class="icon bi bi-lock"></i>
-                            <input type="password" id="password" required
+                            <input type="password" id="password" name="user_password" required
                                 data-parsley-required-message="Please enter valid password"
                                 data-parsley-errors-container="#pass-errors"
                                 placeholder="••••••••" autocomplete="current-password" />
@@ -133,7 +198,7 @@ include "dbConnection.php";
                             <input type="checkbox" id="remember" />
                             Remember me
                         </label>
-                        <button class="pg-forgot">Forgot password?</button>
+                        <button type="button" class="pg-forgot">Forgot password?</button>
                     </div>
 
                     <button type="submit" class="pg-btn-submit" id="submitBtn">Sign In</button>

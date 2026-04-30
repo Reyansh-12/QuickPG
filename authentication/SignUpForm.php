@@ -36,7 +36,7 @@ if (isset($_POST["submit"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PG Hostel – Create Account</title>
+    <title>QuickPG – Create Account</title>
     
     <link rel="stylesheet" href="signUPForm.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap">
@@ -60,19 +60,21 @@ if (isset($_POST["submit"])) {
     <div class="wrapper">
         <div class="panel-left">
             <div class="brand-wrap">
-                <div class="brand-name">PG Hostel</div>
-                <div class="brand-tagline">Luxury Redefined</div>
+                <div class="brand-chip">Create your tenant account</div>
+                <div class="brand-name">QuickPG</div>
+                <div class="brand-tagline">Verified Stays. Better Living.</div>
                 <div class="gold-rule"></div>
-                <div class="brand-headline">Begin Your Journey<br>to Perfect Stays</div>
-                <div class="brand-sub">World-class hospitality.<br>Unforgettable experiences.</div>
-                <a href="LoginForm.php" class="signin-link">Sign In →</a>
+                <div class="brand-headline">Start your journey to<br>your perfect PG stay</div>
+                <div class="brand-sub">Find trusted listings, compare amenities,<br>and move in stress free.</div>
+                <a href="LoginForm.php" class="signin-link">Already have an account? Sign In →</a>
             </div>
         </div>
 
         <div class="panel-right">
             <div class="card">
+                <div class="card-chip">Secure Registration</div>
                 <div class="card-title">Create Account</div>
-                <div class="card-sub">Join PG Hostel and start your story</div>
+                <div class="card-sub">Join QuickPG and book your stay with confidence</div>
                 
                 <?php if($message) echo "<div class='msg-box' style='color:red; text-align:center;'>$message</div>"; ?>
 

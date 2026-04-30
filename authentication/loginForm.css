@@ -5,16 +5,16 @@
     }
 
     :root {
-      --gold:        #c9a84c;
-      --gold-light:  #f5d76e;
-      --gold-glow:   rgba(201,168,76,0.35);
-      --dark-1:      #0a0a1a;
-      --dark-2:      #111128;
-      --dark-3:      #16213e;
+      --gold:        #d6b257;
+      --gold-light:  #ffe08a;
+      --gold-glow:   rgba(214,178,87,0.35);
+      --dark-1:      #060b18;
+      --dark-2:      #0f1b33;
+      --dark-3:      #1a2d4d;
       --glass-bg:    rgba(255,255,255,0.07);
       --glass-border:rgba(255,255,255,0.13);
       --text-primary:#ffffff;
-      --text-muted:  rgba(255,255,255,0.5);
+      --text-muted:  rgba(255,255,255,0.62);
       --text-hint:   rgba(255,255,255,0.3);
     }
 
@@ -58,9 +58,9 @@
       inset: 0;
       background: linear-gradient(
         135deg,
-        rgba(8,8,22,0.88) 0%,
-        rgba(15,30,65,0.78) 60%,
-        rgba(10,8,20,0.82) 100%
+        rgba(6,11,24,0.9) 0%,
+        rgba(14,35,72,0.78) 60%,
+        rgba(7,11,22,0.86) 100%
       );
     }
 
@@ -92,9 +92,10 @@
       justify-content: center;
       margin: 0 auto 22px;
       font-family: 'Playfair Display', serif;
-      font-size: 32px;
+      font-size: 24px;
       font-weight: 700;
-      color: #1a1206;
+      color: #12172a;
+      letter-spacing: 1px;
       box-shadow: 0 8px 36px var(--gold-glow), 0 2px 8px rgba(0,0,0,0.5);
       cursor: pointer;
       transition: transform 0.35s cubic-bezier(.34,1.56,.64,1),
@@ -107,19 +108,19 @@
 
     .pg-brand {
       font-family: 'Playfair Display', serif;
-      font-size: 30px;
+      font-size: 32px;
       font-weight: 700;
       color: var(--text-primary);
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
       margin-bottom: 4px;
     }
 
     .pg-tagline {
-      font-size: 11px;
+      font-size: 10.5px;
       color: var(--gold);
-      letter-spacing: 4px;
+      letter-spacing: 2.4px;
       text-transform: uppercase;
-      font-weight: 500;
+      font-weight: 600;
       margin-bottom: 32px;
     }
 
@@ -132,7 +133,7 @@
 
     .pg-headline {
       font-family: 'Playfair Display', serif;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 400;
       color: var(--text-primary);
       line-height: 1.55;
@@ -140,7 +141,7 @@
     }
 
     .pg-subtext {
-      font-size: 13.5px;
+      font-size: 14px;
       color: var(--text-muted);
       line-height: 1.7;
       margin-bottom: 40px;
@@ -164,6 +165,7 @@
       position: relative;
       overflow: hidden;
       transition: color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      text-decoration: none;
     }
     .pg-signup-btn::before {
       content: '';
@@ -181,13 +183,6 @@
       box-shadow: 0 6px 28px var(--gold-glow);
     }
     .pg-signup-btn span { position: relative; z-index: 1; }
-    .pg-signup-btn span a{
-        text-decoration: none;
-        color: rgba(201,168,76,0.55);
-    }
-    .pg-signup-btn:hover span a{
-        color: #1a1206;
-    }
     .pg-signup-btn .arrow {
       position: relative;
       z-index: 1;
@@ -235,15 +230,29 @@
     .pg-card {
       position: relative;
       z-index: 2;
-      width: 380px;
-      background: rgba(255,255,255,0.065);
-      backdrop-filter: blur(28px);
-      -webkit-backdrop-filter: blur(28px);
-      border: 1px solid var(--glass-border);
-      border-radius: 24px;
+      width: 400px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 26px;
       padding: 44px 40px;
       box-shadow: 0 32px 80px rgba(0,0,0,0.45),
                   inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+    .pg-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #11182d;
+      background: linear-gradient(140deg, var(--gold), var(--gold-light));
+      margin-bottom: 16px;
     }
 
     .pg-card::before {
@@ -263,7 +272,7 @@
       margin-bottom: 4px;
     }
     .pg-card-sub {
-      font-size: 13px;
+      font-size: 13.5px;
       color: var(--text-muted);
       margin-bottom: 32px;
     }
@@ -378,7 +387,7 @@
       font-weight: 600;
       color: #1a1206;
       cursor: pointer;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.5px;
       position: relative;
       overflow: hidden;
       transform: translate(0, 0) !important;
@@ -423,7 +432,7 @@
     }
     .pg-or span {
       font-size: 11px;
-      color: var(--text-hint);
+      color: rgba(255,255,255,0.45);
       letter-spacing: 1.2px;
       text-transform: uppercase;
     }

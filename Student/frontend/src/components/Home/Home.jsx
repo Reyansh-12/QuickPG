@@ -1,199 +1,294 @@
 import "../../assets/style/home.css";
-import { CgBoy, CgGirl } from "react-icons/cg";
-import { IoHome, IoFastFood } from "react-icons/io5";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { IoFastFood, IoHomeOutline } from "react-icons/io5";
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { FaWifi } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { BsStarFill } from "react-icons/bs";
 import  building  from "../../assets/images/building.avif";
-
+import { LuUsers } from "react-icons/lu";
+import { FaLongArrowAltRight } from "react-icons/fa";
+import { LiaUsersCogSolid } from "react-icons/lia";
 
 const Home = () => {
+    const pageRef = useRef(null);
+
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+        const scope = pageRef.current;
+        if (!scope) return;
+
+        const interactiveNodes = scope.querySelectorAll(".js-hover-lift, .js-hover-btn");
+        const cleanups = [];
+
+        interactiveNodes.forEach((node) => {
+            const onEnter = () => {
+                gsap.to(node, {
+                    y: -8,
+                    scale: 1.02,
+                    boxShadow: "0 22px 45px rgba(11, 23, 43, 0.18)",
+                    duration: 0.25,
+                    ease: "power2.out"
+                });
+            };
+
+            const onLeave = () => {
+                gsap.to(node, {
+                    y: 0,
+                    scale: 1,
+                    boxShadow: "0 10px 24px rgba(11, 23, 43, 0.1)",
+                    duration: 0.25,
+                    ease: "power2.out"
+                });
+            };
+
+            node.addEventListener("mouseenter", onEnter);
+            node.addEventListener("mouseleave", onLeave);
+            cleanups.push(() => {
+                node.removeEventListener("mouseenter", onEnter);
+                node.removeEventListener("mouseleave", onLeave);
+            });
+        });
+
+        return () => cleanups.forEach((cleanup) => cleanup());
+    }, []);
+
+    useEffect(() => {
+        const scope = pageRef.current;
+        if (!scope) return;
+
+        const sections = scope.querySelectorAll(".js-scroll-reveal");
+        const animations = [];
+
+        sections.forEach((section) => {
+            const heading = section.querySelector(".filter-heading, .heading");
+            const cards = section.querySelectorAll(".js-hover-lift, .step-card, .testimonial-card");
+
+            if (heading) {
+                animations.push(
+                    gsap.fromTo(
+                        heading,
+                        { opacity: 0, y: 28 },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.7,
+                            ease: "power2.out",
+                            scrollTrigger: {
+                                trigger: section,
+                                start: "top 80%"
+                            }
+                        }
+                    )
+                );
+            }
+
+            if (cards.length) {
+                animations.push(
+                    gsap.fromTo(
+                        cards,
+                        { opacity: 0, y: 30 },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.6,
+                            stagger: 0.08,
+                            ease: "power2.out",
+                            scrollTrigger: {
+                                trigger: section,
+                                start: "top 75%"
+                            }
+                        }
+                    )
+                );
+            }
+        });
+
+        return () => {
+            animations.forEach((anim) => {
+                anim.scrollTrigger?.kill();
+                anim.kill();
+            });
+        };
+    }, []);
+
+    const filters = [
+        { icon: <LuUsers />, label: "For Students" },
+        { icon: <IoHomeOutline />, label: "For Working" },
+        { icon: <LuUsers />, label: "Girls Only" },
+        { icon: <LuUsers />, label: "Boys Only" },
+        { icon: <IoHomeOutline />, label: "Luxury" },
+        { icon: <LiaUsersCogSolid />, label: "Co-living" }
+    ];
+
+    const features = [
+        { icon: <FaWifi />, title: "Zero Security Deposit", desc: "Move in without paying any deposit. Pay only your first month rent." },
+        { icon: <IoFastFood />, title: "Every Listing Verified", desc: "Each property is inspected by our team before going live." },
+        { icon: <RiMoneyRupeeCircleFill />, title: "Instant Online Booking", desc: "Reserve your bed in minutes with secure payment support." }
+    ];
+
     return (
         <>
-            <div className="hero-section">
-                <div className="cont m-0 pt-5 h-100 ">
-                <p className="text-center highlight rounded-2 ps-3"><span className="rounded-5"></span>INDIA'S SMARTEST PG FINDER</p>
-                <h1 className="ms-5 heading text-white fw-bold">Welcome to Quick PG</h1>
-                <h5 className="ms-5 sub-heading text-white fw-bold">Find your perfect PG & hostel</h5>
-                <div className="d-flex justify-content-start mt-5 bg-warning p-3 rounded-2 explore-card">
-                    <span className="ms-3 me-4 explore-btn rounded-2 border-0 p-2">₹0</span>
-                    <div>
-                        <h3>Zero Security Deposit</h3>
-                        <p>Move In without paying any deposit. Just pay your first month's rent</p>
+            <div ref={pageRef} className="home-modern">
+                <section className="hero-section js-scroll-reveal">
+                    <div className="hero-overlay">
+                        <div className="container py-5">
+                            <p className="highlight">INDIA'S SMARTEST PG FINDER</p>
+                            <h1 className="heading">Welcome to Quick PG</h1>
+                            <h5 className="sub-heading">Find your perfect PG & hostel in minutes</h5>
+                            <div className="explore-card js-hover-lift">
+                                <span className="explore-btn">₹0</span>
+                                <div>
+                                    <h3>Zero Security Deposit</h3>
+                                    <p className="mb-0">Move in without paying any deposit. Just your first month rent.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                </div>
-            </div>
-            <div className="">
-                <div className="card search-box shadow-lg mt-5 p-5 rounded-4">
-                    <h1 className="filter-heading">Find Your <em>Perfect</em> PG</h1>
-                    <p>Search by city, locality, or landmark</p>
-                    <div className="d-flex search justify-content-start rounded-3 p-2 align-items-center gap-1">
-                        <input type="search" className="border border-0 p-2 bg-transparent" placeholder="e.g Koregaon Park, Pune, or Indiranagar, Bangalore" style={{width: '89%'}} />
-                        <button className="btn text-black bg-warning">Search PG</button>
-                    </div>
-                    <div className="list">
-                        <ul className="d-flex gap-4 justify-content-start mt-3">
-                            <li className="fw-bold bg-transparent">QUICK FILTER</li>
-                            <li className="border border-success"><CgBoy /> Boys PG</li>
-                            <li><CgGirl />Girls PG</li>
-                            <li><IoHome />Co-living</li>
-                            <li><IoFastFood />With Meals</li>
-                            <li><RiMoneyRupeeCircleFill />Under 8K</li>
-                            <li><FaWifi />WiFi Included</li>
+                </section>
+
+                <section className="container py-5 js-scroll-reveal">
+                    <div className="search-box p-4 p-md-5 rounded-4">
+                        <div className="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <h1 className="filter-heading mb-0">Find Your <em>Perfect</em> PG</h1>
+                            <a href="#" className="modern-link js-hover-btn">View All <FaLongArrowAltRight className="ms-1" /></a>
+                        </div>
+                        <ul className="filter-grid mt-4">
+                            {filters.map((item) => (
+                                <li key={item.label} className="find-card js-hover-lift">
+                                    <span className="fs-4">{item.icon}</span>
+                                    {item.label}
+                                </li>
+                            ))}
                         </ul>
                     </div>
-                </div>
-            </div>
+                </section>
 
-            <div>
-                <div className="d-flex row w-100">
-                    <div className="col-md-6 p-5">
-                        <h1 className="filter-heading">India's most <em>trusted</em> <br />PG platform</h1>
-                        <ul className="d-flex flex-column gap-3 justify-content-start mt-4">
-                            <li className="d-flex gap-3 align-items-center bg-white shadow-lg border border-warning p-3 rounded-3">
-                                <span className="rounded-5 bg-warning p-2"><FaWifi /></span>
-                                <div>
-                                    <h5 className="about-title">Zero Security Deposit</h5>
-                                    <span style={{fontSize:'15px'}}>Move in without paying any deposit. Just your first month's rent and you're home. No broker fees ever.</span>
-                                </div>
-                            </li>
-                            <li className="d-flex gap-3 align-items-center bg-white shadow-lg border border-warning p-3 rounded-3">
-                                <span className="rounded-5 bg-warning p-2"><IoFastFood /></span>
-                                <div>
-                                    <h5 className="about-title">Every Listing Verified</h5>
-                                    <span style={{fontSize:'15px'}}>Our team personally inspects every property before it goes live. No scams, no surprises — guaranteed.</span>
-                                </div>
-                            </li>
-                            <li className="d-flex gap-3 align-items-center bg-white shadow-lg border border-warning p-3 rounded-3">
-                                <span className="rounded-5 bg-warning p-2"><RiMoneyRupeeCircleFill /></span>
-                                <div>
-                                    <h5 className="about-title">Instant Online Booking</h5>
-                                    <span style={{fontSize:'15px'}}>Book and confirm your PG in under 2 minutes. Move in the same day if you want.</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="col-md-6 pt-5">
-                        <img src={building} alt="Why Choose Quick PG?" className="img-fluid shadow-lg rounded-5 mt-5 stamp" 
-                        style={{height:'450px'}}/>
-                    </div>
-                </div>
-            </div>
-
-           <div className="hostel-cards">
-                <h1 className="filter-heading ms-5 mt-4">Explore Popular PGs</h1>
-                <div className="hostel-cards p-3">
-                    <ul className="d-flex justify-content-center  mt-3">
-                        <li className="card shadow-lg w-100 ms-0 position-relative">
-                        <div class="ribbon">Your text content</div>
-                        <div class="badge">Available</div>
-                            <img src={building} alt="Hostel 1" className="card-img-top" />
-                            <div className="card-body">
-                                <div className="d-flex justify-content-end">
-                                    <span className="boys">Boys Hostel</span>
-                                </div>
-                                <h5 className="card-title mt-3">Cozy PG in Koregaon Park</h5>
-                                <div className="d-flex hostel-card-list justify-content-start mt-3 mb-3">
-                                    <ul className=" d-flex flex-wrap gap-2 justify-content-start p-0">
-                                        <li>Premium Food Menu</li>
+                <section className="container pb-5 js-scroll-reveal">
+                    <div className="row g-4">
+                        <div className="col-lg-8">
+                            <article className="card hostel-card js-hover-lift">
+                                <div className="ribbon">Top Rated</div>
+                                <div className="badge-modern">Available</div>
+                                <img src={building} alt="Hostel 1" className="card-img-top" />
+                                <div className="card-body p-4">
+                                    <div className="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                                        <span className="boys">Boys Hostel</span>
+                                        <span className="rating"><BsStarFill /> 4.5 (50)</span>
+                                    </div>
+                                    <h5 className="card-title mt-3">Cozy PG in Koregaon Park</h5>
+                                    <ul className="hostel-chip-list">
+                                        <li>Premium Food</li>
                                         <li>AC</li>
                                         <li>Fully Furnished</li>
-                                        <li>Jain Food</li>
                                         <li>Laundry</li>
+                                        <li>WiFi</li>
                                     </ul>
+                                    <p className="price-tag">₹7,500 / month</p>
+                                    <div className="d-flex gap-2 flex-wrap">
+                                        <button className="btn btn-success js-hover-btn">WhatsApp</button>
+                                        <button className="btn btn-warning js-hover-btn">Schedule Visit</button>
+                                        <a href="#" className="view-link">View Details <FaArrowRightLong /></a>
+                                    </div>
                                 </div>
-                                <div className="d-flex mb-3" style={{fontSize:'14px'}}>
-                                    <span className="d-flex"><BsStarFill className="mt-1 me-1" /> <span className="">4.5 ( 50 )</span></span>
-                                    <span className="ms-3 text-secondary">Single, Double, Triple </span>
-                                </div>
-                                <p className="card-text fs-5 fw-bold text-secondary">₹7,500/month</p>
-                                <div className="d-flex gap-2 mb-3">
-                                    <button className="btn btn-success w-50">WhatsApp</button>
-                                    <button className="btn btn-warning w-50">Schedule Visit</button>
-                                </div>
-                                <div className="d-flex justify-content-center">
-                                    <a href="" className="text-decoration-none">View Details <FaArrowRightLong /></a>
-                                </div>
+                            </article>
+                        </div>
+                        <div className="col-lg-4">
+                            <div className="d-flex flex-column gap-4 h-100">
+                                <article className="card p-4 mini-card js-hover-lift">
+                                    <h5>Modern PG in Indiranagar</h5>
+                                    <p className="mb-0">Spacious rooms with meals, housekeeping, and 24/7 support. ₹8,000/month</p>
+                                </article>
+                                <article className="card p-4 mini-card js-hover-lift">
+                                    <h5>Affordable PG in Baner</h5>
+                                    <p className="mb-0">Budget-friendly plans with essentials covered. Starting ₹6,500/month</p>
+                                </article>
                             </div>
-                        </li>
-                        <li className="card w-100 ms-5">
-                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="Hostel 2" className="card-img-top" />
-                            <div className="card-body">
-                                <h5 className="card-title">Modern PG in Indiranagar</h5>
-                                <p className="card-text">Spacious rooms with WiFi and meals. ₹8,000/month</p>
-                            </div>
-                        </li>
-                        <li className="card w-100 ms-5">
-                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56
-a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="Hostel 3" className="card-img-top" />
-                            <div className="card-body">
-                                <h5 className="card-title">Affordable PG in Baner</h5>
-                                <p className="card-text">Budget-friendly rooms with basic amenities. ₹6,500/month</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-           </div>
-           <div>
-                <div className="d-flex row w-100 p-5 how-works" style={{backgroundColor: '#0B172B'}}>
-                    <div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="container py-5 js-scroll-reveal">
+                    <div className="row g-4 align-items-center">
+                        <div className="col-lg-6">
+                            <h1 className="filter-heading">India's most <em>trusted</em> PG platform</h1>
+                            <ul className="trusted-list mt-4">
+                                {features.map((item) => (
+                                    <li key={item.title} className="trusted-card js-hover-lift">
+                                        <span className="trusted-icon">{item.icon}</span>
+                                        <div>
+                                            <h5 className="about-title">{item.title}</h5>
+                                            <p className="mb-0">{item.desc}</p>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className="col-lg-6">
+                            <img src={building} alt="Why Choose Quick PG?" className="img-fluid shadow-lg rounded-4 stamp" />
+                        </div>
+                    </div>
+                </section>
+
+                <section className="how-works py-5 js-scroll-reveal">
+                    <div className="container">
                         <span className="text-white">How it works</span>
                         <h1 className="text-white filter-heading">Move in in <em>4 easy steps</em></h1>
-                        <ul className="d-flex gap-3 justify-content-start mt-4">
-                            <li className="d-flex flex-column gap-2 align-items-center p-3">
-                                <h1 className="text-warning dotted-line border border-warning rounded-circle p-3">01</h1>
-                                <h5 className="about-title text-white">Search & Filter</h5>
-                                <span className="text-secondary" style={{fontSize:'15px'}}>Use our smart filters to find PGs that match your preferences. Search by location, amenities, price, and more.</span>
+                        <ul className="steps-grid mt-4">
+                            <li className="step-card js-hover-lift">
+                                <h2>01</h2>
+                                <h5>Search & Filter</h5>
+                                <p>Use filters to discover hostels by location, amenities, and budget.</p>
                             </li>
-                            <li className="d-flex flex-column gap-2 align-items-center p-3">
-                                <h1 className="text-warning dotted-line border border-warning rounded-circle p-3">02</h1>
-                                <h5 className="about-title text-white">Book Instantly</h5>
-                                <span className="text-secondary" style={{fontSize:'15px'}}>Found your perfect PG? Book it instantly with our secure online payment system. No paperwork, no hassle.</span>
+                            <li className="step-card js-hover-lift">
+                                <h2>02</h2>
+                                <h5>Book Instantly</h5>
+                                <p>Reserve your PG online with a secure and simple booking flow.</p>
                             </li>
-                            <li className="d-flex flex-column gap-2 align-items-center p-3">
-                                <h1 className="text-warning dotted-line border border-warning rounded-circle p-3">03</h1>
-                                <h5 className="about-title text-white">Move In</h5>
-                                <span className="text-secondary" style={{fontSize:'15px'}}>Get the keys and move in on your preferred date. Our support team is here to assist you every step of the way.</span>
+                            <li className="step-card js-hover-lift">
+                                <h2>03</h2>
+                                <h5>Move In</h5>
+                                <p>Pick your move-in date and collect your keys without paperwork stress.</p>
                             </li>
-                            <li className="d-flex flex-column gap-2 align-items-center p-3">
-                                <h1 className="text-warning border border-warning rounded-circle p-3">04</h1>
-                                <h5 className="about-title text-white">Enjoy Your Stay</h5>
-                                <span className="text-secondary" style={{fontSize:'15px'}}>Experience hassle-free living with our verified PGs. Enjoy your stay and focus on what matters most to you.</span>
+                            <li className="step-card js-hover-lift">
+                                <h2>04</h2>
+                                <h5>Enjoy Your Stay</h5>
+                                <p>Experience comfortable living with verified services and support.</p>
                             </li>
                         </ul>
                     </div>
-                </div>
-           </div>
-           <div className="p-5 w-100">
-                <div>
-                    <h1>Loved by <em>thousands</em></h1>
-                    <div className="d-flex justify-content-center">
-                        <ul className="d-flex row-cols-3">
-                            <li className="card shadow-lg p-3 ms-0">
-                                <p>Found my dream PG in under 10 minutes. The zero deposit policy was a lifesaver when I relocated for my new job. Absolutely seamless experience!</p>
-                                <hr />
+                </section>
 
-                            </li>
-                            <li className="card shadow-lg p-3 ms-3"></li>
-                            <li className="card shadow-lg p-3 ms-3"></li>
-                        </ul>
+                <section className="container py-5 js-scroll-reveal">
+                    <h1 className="filter-heading">Loved by <em>thousands</em></h1>
+                    <div className="testimonial-grid mt-4">
+                        <article className="testimonial-card js-hover-lift">
+                            Found my dream PG in under 10 minutes. Zero deposit helped me relocate stress free.
+                        </article>
+                        <article className="testimonial-card js-hover-lift">
+                            Property photos matched reality. Booking and move-in were both super smooth.
+                        </article>
+                        <article className="testimonial-card js-hover-lift">
+                            Helpful support team and verified listings. I got exactly what I needed.
+                        </article>
                     </div>
-                </div>
-           </div>
-           <div>
-                <div className="d-flex row m-5 shadow-lg border border-warning rounded-4 p-5">
-                    <div className="col-lg-8">
-                        <h1 className="">Your perfect PG is one search away</h1>
-                        <span>Join 50,000+ tenants who found their home on QuickPG</span>
+                </section>
+
+                <section className="container pb-5 js-scroll-reveal">
+                    <div className="cta-box d-flex row align-items-center p-4 p-md-5">
+                        <div className="col-lg-8">
+                            <h1>Your perfect PG is one search away</h1>
+                            <p className="mb-0">Join 50,000+ tenants who found their home on QuickPG</p>
+                        </div>
+                        <div className="col-lg-4 d-flex justify-content-lg-end mt-3 mt-lg-0">
+                            <button className="btn btn-warning btn-lg js-hover-btn">Find My PG Now <FaArrowRightLong /></button>
+                        </div>
                     </div>
-                    <div className="col-lg-4 d-flex justify-content-center align-items-center">
-                        <button className="p-3 btn btn-warning ps-5 pe-5 fw-bold">Find My PG Now <FaArrowRightLong /></button>
-                    </div>
-                </div>
-           </div>
+                </section>
+            </div>
         </>
     );
-}
+};
 export default Home;
